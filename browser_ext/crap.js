@@ -15,12 +15,12 @@ function sendUpdate(data) {
   }
   // debug(JSON.stringify(payload, null, 2))
   debug('sendUpdate %d items', data.length)
-  fetch(`${HOST}/receive`, {
+  fetch(`${HOST}/receive/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
-      body: JSON.stringify(payload),
-    }
+    },
+    body: JSON.stringify(payload),
   })
     .then(console.log)
     .catch(console.error)
@@ -34,7 +34,7 @@ function bigbadtoystore() {
       const $prices = document.querySelectorAll('.product-price')
       const data = []
       $prices.forEach(($elem) => {
-        const price = $elem.textContent.trim().replace(/\s+/, '.').replace('$', '')
+        const price = $elem.textContent.trim().replace(/\s+/, '.').replace(/[$,]/g, '')
         let $parent = $elem.parentElement
         while (!$parent.querySelector('.product-name')) {
           $parent = $parent.parentElement
@@ -51,7 +51,7 @@ function bigbadtoystore() {
     case 'Product': {
       debug('analyzing', pageType)
       const $price = document.querySelector('.price')
-      const price = $price.textContent.trim().replace('$', '')
+      const price = $price.textContent.trim().replace(/[$,]/g, '')
       const name = document.querySelector('.product-header h3').textContent.trim()
       const identifier = document.getElementById('ProductVariationId').value
       const url = window.location.href
