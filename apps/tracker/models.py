@@ -13,6 +13,7 @@ class Property(models.Model):
 class Product(models.Model):
     identifier = models.CharField(max_length=200, unique=True)
     name = models.CharField(max_length=255)
+    # description
     url = models.URLField(blank=True, null=True)
 
     def __str__(self):
