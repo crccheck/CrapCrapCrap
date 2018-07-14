@@ -6,4 +6,5 @@ psycopg2-binary
 
 # Dev
 pip-tools
+factory_boy
 flake8
