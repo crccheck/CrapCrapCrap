@@ -1,3 +1,9 @@
+dj-database-url
+Django
+django-extensions
+project_runpy
+psycopg2-binary
+
 # Dev
 pip-tools
 flake8
