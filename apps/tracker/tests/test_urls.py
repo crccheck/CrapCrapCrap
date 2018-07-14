@@ -20,6 +20,25 @@ class ReceiverTests(TestCase):
         product = Product.objects.get(property=property, identifier='77021')
         self.assertEqual(product.prices.count(), 1)
 
+    def test_property_search_is_loose(self):
+        call_1 = '{"referrer":"https://www.bbts.local/Product/VariationDetails/77021","data":[],"v":1}'  # noqa
+        call_2 = '{"referrer":"http://bbts.local/Product/VariationDetails/77021","data":[],"v":1}'  # noqa
+        response = self.client.post(
+            '/receive/',
+            content_type='application/json',
+            data=call_1,
+        )
+        response = self.client.post(
+            '/receive/',
+            content_type='application/json',
+            data=call_2,
+        )
+
+        self.assertEqual(response.status_code, 204)
+        self.assertEqual(Property.objects.count(), 1)
+        property = Property.objects.get(url='www.bbts.local')
+        self.assertTrue(property)
+
     def test_repeated_post_works(self):
         response = self.client.post(
             '/receive/',

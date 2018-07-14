@@ -1,4 +1,6 @@
 import json
+import logging
+import re
 from urllib.parse import urlparse
 
 from django.views import View
@@ -7,16 +9,26 @@ from django.http import HttpResponse
 from apps.tracker.models import Property, Product, TrackPoint
 
 
+logger = logging.getLogger(__name__)
+
+
 class ReceiverView(View):
     def post(self, request):
+        logger.debug(request.body)
         try:
             data = json.loads(request.body)
         except ValueError as e:
             return HttpResponse(status=400)
 
-        property, created = Property.objects.get_or_create(
-            url=urlparse(data['referrer']).hostname
-        )
+        hostname = urlparse(data['referrer']).hostname
+        base_url = re.match(r'(www.)?(.*)', hostname).groups()[1]
+        try:
+            property = Property.objects.get(url__icontains=base_url)
+        except Property.DoesNotExist:
+            property = Property.objects.create(
+                name=base_url,
+                url=hostname,
+            )
 
         product_ids = [x['identifier'] for x in data['data']]
         known_products = Product.objects.filter(identifier__in=product_ids)
