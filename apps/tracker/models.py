@@ -6,6 +6,9 @@ class Property(models.Model):
     name = models.CharField(max_length=255, null=True, blank=True)
     url = models.URLField(unique=True)
 
+    class Meta:
+        verbose_name_plural = 'properties'
+
     def __str__(self):
         return self.name or self.url
 
@@ -22,15 +25,23 @@ class Product(models.Model):
 
 
 class TrackPoint(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='prices')
+    CURRENCY_CODE_CHOICES = (
+        ('USD', 'USD'),
+    )
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        related_name='prices',
+        editable=False)
     # Well, 2 decimal places should work for most, sorry Unidad de Fomento
     price = models.DecimalField(max_digits=8, decimal_places=2)
     currency_code = models.CharField(
         max_length=3,
+        choices=CURRENCY_CODE_CHOICES,
         default='USD',
         help_text='ISO4217 Currency Code')
     timestamp = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         # TODO use localization
-        return '%s %s $%s' % (self.property, self.product, self.price)
+        return '%s $%s' % (self.product, self.price)
