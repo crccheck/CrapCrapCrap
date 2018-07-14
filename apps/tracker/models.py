@@ -6,11 +6,17 @@ class Property(models.Model):
     name = models.CharField(max_length=255)
     url = models.URLField(unique=True)
 
+    def __str__(self):
+        return self.name
+
 
 class Product(models.Model):
     identifier = models.CharField(max_length=200, unique=True)
     name = models.CharField(max_length=255)
-    url = models.URLField()
+    url = models.URLField(blank=True, null=True)
+
+    def __str__(self):
+        return self.name
 
 
 class TrackPoint(models.Model):
@@ -23,3 +29,7 @@ class TrackPoint(models.Model):
         default='USD',
         help_text='ISO4217 Currency Code')
     timestamp = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        # TODO use localization
+        return '%s %s $%s' % (self.property, self.product, self.price)
