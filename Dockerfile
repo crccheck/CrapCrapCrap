@@ -9,6 +9,7 @@ WORKDIR /app
 COPY requirements.txt /app/requirements.txt
 RUN pip install -r requirements.txt
 COPY . /app
+RUN ./manage.py collectstatic --noinput
 
 EXPOSE 8000
 HEALTHCHECK CMD nc -z localhost 8000

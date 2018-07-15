@@ -4,7 +4,8 @@
   "version": "0.0",
   "description": "Track prices on sites you care about",
   "permissions": [
-    "http://localhost/*"
+    "http://localhost/*",
+    "https://track.craptobuy.com/*",
   ],
   "content_scripts": [
     {
