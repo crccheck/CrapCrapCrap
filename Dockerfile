@@ -11,6 +11,5 @@ RUN pip install -r requirements.txt
 COPY . /app
 
 EXPOSE 8000
-
-# FIXME use a real web server
-CMD python manage.py runserver
+HEALTHCHECK CMD nc -z localhost 8000
+CMD waitress-serve --port=8000 crap.wsgi:application

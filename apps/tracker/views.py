@@ -25,10 +25,7 @@ class ReceiverView(View):
         try:
             property = Property.objects.get(url__icontains=base_url)
         except Property.DoesNotExist:
-            property = Property.objects.create(
-                name=base_url,
-                url=hostname,
-            )
+            property = Property.objects.create(name=base_url, url=hostname)
 
         product_ids = [x['identifier'] for x in data['data']]
         known_products = Product.objects.filter(identifier__in=product_ids)

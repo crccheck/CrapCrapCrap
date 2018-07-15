@@ -22,3 +22,5 @@ python-dateutil==2.7.3    # via faker
 pytz==2018.5              # via django
 six==1.11.0               # via django-extensions, faker, pip-tools, python-dateutil
 text-unidecode==1.2       # via faker
+waitress==1.1.0
+whitenoise==3.3.1

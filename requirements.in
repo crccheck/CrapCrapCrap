@@ -3,6 +3,8 @@ Django
 django-extensions
 project_runpy
 psycopg2-binary
+waitress
+whitenoise
 
 # Dev
 pip-tools
