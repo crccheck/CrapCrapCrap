@@ -1,4 +1,4 @@
-const HOST = 'http://localhost:8000'
+const TRACK_URL = 'https://tracker.craptobuy.com/receive/'
 const DEBUG = 1
 
 function debug(arg0, ...args) {
@@ -15,7 +15,7 @@ function sendUpdate(data) {
   }
   // debug(JSON.stringify(payload, null, 2))
   debug('sendUpdate %d items', data.length)
-  fetch(`${HOST}/receive/`, {
+  fetch(TRACK_URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json; charset=utf-8',

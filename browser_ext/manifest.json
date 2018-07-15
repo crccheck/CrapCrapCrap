@@ -1,11 +1,11 @@
 {
   "manifest_version": 2,
   "name": "CrapCrapCrap",
-  "version": "0.0",
+  "version": "0.1.0",
   "description": "Track prices on sites you care about",
   "permissions": [
     "http://localhost/*",
-    "https://track.craptobuy.com/*",
+    "https://tracker.craptobuy.com/*"
   ],
   "content_scripts": [
     {

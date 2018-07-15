@@ -6,3 +6,6 @@ dev: ## Start a dev browser
 
 lint: ## Check lint
 	web-ext lint
+
+build: ## Build an artifact for addons.mozilla.org
+	web-ext build
