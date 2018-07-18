@@ -15,10 +15,13 @@ class Property(models.Model):
 
 class Product(models.Model):
     property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name='products')
-    identifier = models.CharField(max_length=200, unique=True)
+    identifier = models.CharField(max_length=200)
     name = models.CharField(max_length=255, null=True, blank=True)
     # TODO description
     url = models.URLField(blank=True, null=True)
+
+    class Meta:
+        unique_together = ('property', 'identifier')
 
     def __str__(self):
         return self.name or self.identifier

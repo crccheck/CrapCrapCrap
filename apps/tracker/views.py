@@ -4,6 +4,7 @@ import re
 from urllib.parse import urlparse
 
 from django.views import View
+from django.views.generic import TemplateView
 from django.http import HttpResponse
 
 from apps.tracker.models import Property, Product, TrackPoint
@@ -50,3 +51,12 @@ class ReceiverView(View):
         TrackPoint.objects.bulk_create(points)
 
         return HttpResponse(status=204)
+
+
+class HomeView(TemplateView):
+    template_name = 'home.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['products'] = Product.objects.all().order_by('-id')[:10]
+        return context

@@ -9,3 +9,6 @@ lint: ## Check lint
 
 build: ## Build an artifact for addons.mozilla.org
 	web-ext build
+
+publish:
+	rsync -avz web-ext-artifacts/*.xpi dh:addons.craptobuy.com/downloads
