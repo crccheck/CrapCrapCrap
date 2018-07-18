@@ -9,7 +9,10 @@
   ],
   "content_scripts": [
     {
-      "matches": ["*://www.bigbadtoystore.com/*"],
+      "matches": [
+        "*://www.bigbadtoystore.com/Product*",
+        "*://www.bigbadtoystore.com/Search*"
+      ],
       "js": ["crap.js"]
     }
   ]
