@@ -19,6 +19,7 @@ class Product(models.Model):
     name = models.CharField(max_length=255, null=True, blank=True)
     url = models.URLField(blank=True, null=True)
     last_price = models.DecimalField(max_digits=8, decimal_places=2, null=True)
+    last_price_check = models.DateTimeField(null=True)
     price_drop_day = models.DecimalField(max_digits=8, decimal_places=2, null=True)
     price_drop_week = models.DecimalField(max_digits=8, decimal_places=2, null=True)
 
