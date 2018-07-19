@@ -1,0 +1,5 @@
+language: python
+python: "3.6"
+services: postgresql
+install: pip install -requirements.txt
+script: make test
