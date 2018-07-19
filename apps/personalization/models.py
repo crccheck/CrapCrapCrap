@@ -6,10 +6,10 @@ class List(models.Model):
     """A wishlist"""
     name = models.CharField(max_length=255)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    items = models.ManyToManyField('tracker.Product', through='ListItem')
+    items = models.ManyToManyField('tracker.Product', through='ListItem', related_name='lists')
 
     def __str__(self):
-        return self.name
+        return f'{self.owner} {self.name}'
 
 
 class ListItem(models.Model):

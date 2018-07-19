@@ -7,6 +7,7 @@ from . import models
 class UserFactory(factory.DjangoModelFactory):
     class Meta:
         model = settings.AUTH_USER_MODEL
+    username = factory.Faker('user_name')
 
 
 class ListFactory(factory.DjangoModelFactory):

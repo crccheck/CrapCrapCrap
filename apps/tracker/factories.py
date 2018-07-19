@@ -12,6 +12,8 @@ class ProductFactory(factory.DjangoModelFactory):
     class Meta:
         model = models.Product
     property = factory.SubFactory(PropertyFactory)
+    identifier = factory.Faker('license_plate')
+    name = factory.Faker('name')
 
 
 class TrackPointFactory(factory.DjangoModelFactory):
