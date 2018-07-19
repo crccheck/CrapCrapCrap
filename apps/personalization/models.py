@@ -5,7 +5,8 @@ from django.db import models
 class List(models.Model):
     """A wishlist"""
     name = models.CharField(max_length=255)
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='lists')
     items = models.ManyToManyField('tracker.Product', through='ListItem', related_name='lists')
 
     def __str__(self):

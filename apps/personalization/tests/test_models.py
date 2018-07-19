@@ -1,14 +1,19 @@
 from django.test import TestCase
 
 from apps.tracker.factories import ProductFactory
-from ..factories import UserFactory, ListFactory
+from ..factories import ListFactory
 from ..models import ListItem
 
 
 class ListTests(TestCase):
-    def test_factory(self):
+    def test_flow(self):
+        """DELETEME just experimenting"""
         lis = ListFactory()
-        print('list', lis, lis.pk)
         product = ProductFactory()
+
         ListItem.objects.create(product=product, list=lis)
-        print(product.lists.all())
+        ListItem.objects.create(product=ProductFactory(), list=lis)
+
+        self.assertEqual(product.lists.count(), 1)
+        self.assertEqual(lis.items.count(), 2)
+        self.assertEqual(lis.owner.lists.count(), 1)

@@ -6,6 +6,7 @@ from . import models
 class PropertyFactory(factory.DjangoModelFactory):
     class Meta:
         model = models.Property
+    url = factory.Faker('url')
 
 
 class ProductFactory(factory.DjangoModelFactory):
