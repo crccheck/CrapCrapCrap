@@ -20,5 +20,6 @@ class TrackPointTests(TestCase):
 
         track_point_added.send(sender=self, product=product)
         self.assertEqual(product.last_price, 1000)
+        self.assertEqual(product.last_price_check, now)
         self.assertEqual(product.price_drop_day, 10)
         self.assertEqual(product.price_drop_week, 70)

@@ -29,5 +29,6 @@ class TrackPointTests(TestCase):
             ),
             price_drop=F('price') - F('min_price'),
         ).order_by('-price_drop')
-        # for x in qs:
-        #     print(x, x.price, x.min_price, x.price_drop)
+        for x in qs:
+            pass
+            # print(x, x.price, x.min_price, x.price_drop)
