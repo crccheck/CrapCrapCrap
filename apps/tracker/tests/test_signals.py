@@ -8,10 +8,10 @@ from ..signals import track_point_added
 
 
 class TrackPointTests(TestCase):
-    def test_window_functions_can_find_price_drops(self):
+    def test_pricing_information_is_added_to_product(self):
         product = ProductFactory()
+        now = timezone.now()
         for x in range(0, 10):
-            now = timezone.now()
             TrackPointFactory(
                 product=product,
                 timestamp=now - dt.timedelta(days=x),
@@ -19,6 +19,7 @@ class TrackPointTests(TestCase):
             )
 
         track_point_added.send(sender=self, product=product)
+
         self.assertEqual(product.last_price, 1000)
         self.assertEqual(product.last_price_check, now)
         self.assertEqual(product.price_drop_day, 10)

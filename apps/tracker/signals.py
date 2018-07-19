@@ -17,6 +17,7 @@ def update_product_pricing(sender, product, **kwargs):
         day_diff=max_day - latest_track.price,
     )
     product.last_price = latest_track.price
+    product.last_price_check = latest_track.timestamp
     product.price_drop_day = out['day_diff']
     product.price_drop_week = out['week_diff']
     product.save()
