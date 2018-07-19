@@ -1,4 +1,5 @@
 const TRACK_URL = 'https://tracker.craptobuy.com/receive/'
+// const TRACK_URL = 'http://localhost:8000/receive/'
 const DEBUG = 1
 
 function debug(arg0, ...args) {

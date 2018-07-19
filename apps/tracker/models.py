@@ -17,8 +17,11 @@ class Product(models.Model):
     property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name='products')
     identifier = models.CharField(max_length=200)
     name = models.CharField(max_length=255, null=True, blank=True)
-    # TODO description
     url = models.URLField(blank=True, null=True)
+    last_price = models.DecimalField(max_digits=8, decimal_places=2, null=True)
+    last_price_check = models.DateTimeField(null=True)
+    price_drop_day = models.DecimalField(max_digits=8, decimal_places=2, null=True)
+    price_drop_week = models.DecimalField(max_digits=8, decimal_places=2, null=True)
 
     class Meta:
         unique_together = ('property', 'identifier')
@@ -44,6 +47,7 @@ class TrackPoint(models.Model):
         default='USD',
         help_text='ISO4217 Currency Code')
     timestamp = models.DateTimeField(default=timezone.now)
+    compacted = models.BooleanField(default=False)
 
     def __str__(self):
         # TODO use localization

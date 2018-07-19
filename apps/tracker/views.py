@@ -7,7 +7,8 @@ from django.views import View
 from django.views.generic import TemplateView
 from django.http import HttpResponse
 
-from apps.tracker.models import Property, Product, TrackPoint
+from .models import Property, Product, TrackPoint
+from .signals import track_point_added
 
 
 logger = logging.getLogger(__name__)
@@ -49,6 +50,8 @@ class ReceiverView(View):
             ) for x in data['data']
         ]
         TrackPoint.objects.bulk_create(points)
+        for product in product_map.values():
+            track_point_added.send(sender=self, product=product)
 
         return HttpResponse(status=204)
 
