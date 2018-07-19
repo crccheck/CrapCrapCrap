@@ -1,9 +1,9 @@
 from django.test import TestCase
 
-from ..factories import UserFactory
+from ..factories import UserFactory, ListFactory
 
 
 class ListTests(TestCase):
     def test_factory(self):
-        user = UserFactory()
-        print(user)
+        lis = ListFactory()
+        print('list', lis, lis.pk)

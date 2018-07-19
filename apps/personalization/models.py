@@ -8,6 +8,9 @@ class List(models.Model):
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     items = models.ManyToManyField('tracker.Product', through='ListItem')
 
+    def __str__(self):
+        return self.name
+
 
 class ListItem(models.Model):
     list = models.ForeignKey(List, on_delete=models.CASCADE)
