@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'django_extensions',
 
     'apps.tracker',
+    'apps.personalization',
 ]
 
 MIDDLEWARE = [
