@@ -20,7 +20,7 @@ class ListDetailTests(TestCase):
 
     def test_returns_list_detail(self):
         response = self.client.get(self.url)
-        self.assertEqual(response.json()['wishlist'], [self.product.pk])
+        self.assertEqual(response.json()['wishlist'], [self.product.key])
 
 
 class ListToggleTests(TestCase):
@@ -40,12 +40,12 @@ class ListToggleTests(TestCase):
 
         response = self.client.put(
             self.url,
-            data=json.dumps({'products': [self.product.pk]}),
+            data=json.dumps({'products': [self.product.key]}),
             content_type='application/json')
 
         self.assertEqual(response.status_code, 200)
         self.assertIn(self.product, lis.products.all())
-        self.assertTrue(response.json()[str(self.product.pk)])
+        self.assertTrue(response.json()[self.product.key])
 
     def test_existing_product_to_list_is_noop(self):
         lis = ListFactory(owner=self.user)
@@ -53,7 +53,7 @@ class ListToggleTests(TestCase):
 
         response = self.client.put(
             self.url,
-            data=json.dumps({'products': [self.product.pk]}),
+            data=json.dumps({'products': [self.product.key]}),
             content_type='application/json')
 
         self.assertEqual(response.status_code, 200)
@@ -62,7 +62,7 @@ class ListToggleTests(TestCase):
     def test_list_is_created_if_user_has_none(self):
         response = self.client.put(
             self.url,
-            data=json.dumps({'products': [self.product.pk]}),
+            data=json.dumps({'products': [self.product.key]}),
             content_type='application/json')
 
         self.assertEqual(self.user.lists.count(), 1)
@@ -78,7 +78,7 @@ class ListToggleTests(TestCase):
 
         response = self.client.delete(
             self.url,
-            data=json.dumps({'products': [self.product.pk]}),
+            data=json.dumps({'products': [self.product.key]}),
             content_type='application/json')
 
         self.assertEqual(response.status_code, 200)
@@ -90,7 +90,7 @@ class ListToggleTests(TestCase):
 
         response = self.client.delete(
             self.url,
-            data=json.dumps({'products': [self.product.pk]}),
+            data=json.dumps({'products': [self.product.key]}),
             content_type='application/json')
 
         self.assertEqual(response.status_code, 200)
