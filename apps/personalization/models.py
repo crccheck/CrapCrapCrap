@@ -10,10 +10,13 @@ pkgen_candidates = string.ascii_letters + string.digits
 
 def pkgen(length=9):
     """
-    Generate non-sequential primary keys that are also short enough.
+    Generate non-sequential primary keys that are also short.
 
     Always start with a letter to avoid any potential int conversion. By
     default, provides 52 * 62 ** 8 combinations 11,353,685,490,414,592.
+
+    Inspired by:
+    https://stackoverflow.com/questions/3759006/generating-a-non-sequential-id-pk-for-a-django-model
     """
     ret = []
     ret.append(random.choice(string.ascii_letters))
@@ -23,8 +26,7 @@ def pkgen(length=9):
 
 class List(models.Model):
     """A wishlist"""
-    # https://stackoverflow.com/questions/3759006/generating-a-non-sequential-id-pk-for-a-django-model
-    # TODO key = models.CharField(max_length=8, unique=True, default=pkgen)
+    key = models.CharField(max_length=9, primary_key=True, default=pkgen)
     name = models.CharField(max_length=255)
     owner = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='lists')
