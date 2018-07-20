@@ -12,6 +12,15 @@ $.ajaxSetup({
   },
 })
 
+$.ajax('/api/list/', {
+  success: (data) => {
+    data.wishlist.forEach((id) => {
+      $(`.product[data-id=${id}] .product--ui-wishlist`)
+        .addClass('active')
+    })
+  },
+})
+
 $('.product').each(function (idx, el) {
   const $product = $(el)
   $product.on('click', '.product--ui-wishlist', function (e, el) {

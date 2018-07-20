@@ -20,7 +20,7 @@ class ListDetailTests(TestCase):
 
     def test_returns_list_detail(self):
         response = self.client.get(self.url)
-        self.assertEqual(response.json()['list'], [self.product.pk])
+        self.assertEqual(response.json()['wishlist'], [self.product.pk])
 
 
 class ListToggleTests(TestCase):

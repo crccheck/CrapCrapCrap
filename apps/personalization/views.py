@@ -18,7 +18,7 @@ class WishlistDetail(View):
             lis = request.user.lists.create(name='Wishlist')
 
         return JsonResponse({
-            'list': list(lis.products.all().values_list('pk', flat=True)),
+            'wishlist': list(lis.products.all().values_list('pk', flat=True)),
         })
 
 
