@@ -2,18 +2,19 @@
   "name": "crapcrapcrap",
   "version": "0.0.0",
   "description": "CrapCrapCrap",
-  "scripts": {
-    "lint": "eslint --report-unused-disable-directives apps/tracker/static",
-    "pretest": "npm lint"
-  },
   "license": "UNLICENSED",
   "private": true,
+  "dependencies": {
+    "browserify": "^16.2.2"
+  },
   "devDependencies": {
+    "browser-sync": "^2.24.5",
     "eslint": "^5.1.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-node": "^7.0.1",
     "eslint-plugin-promise": "^3.8.0",
-    "eslint-plugin-standard": "^3.1.0"
+    "eslint-plugin-standard": "^3.1.0",
+    "watchify": "^3.11.0"
   }
 }

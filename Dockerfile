@@ -3,12 +3,17 @@ LABEL maintainer="c@crccheck.com"
 
 RUN apk add --no-cache \
   # psycopg2
-  postgresql-dev gcc musl-dev
+  postgresql-dev gcc musl-dev \
+  # staticfiles build
+  nodejs make
 
 WORKDIR /app
 COPY requirements.txt /app/requirements.txt
 RUN pip install -r requirements.txt
+COPY package.json /app/package.json
+RUN npm install --production
 COPY . /app
+RUN make build
 RUN ./manage.py collectstatic --noinput
 
 EXPOSE 8000
