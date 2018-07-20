@@ -23,6 +23,11 @@ $('.product').each(function (idx, el) {
       data: JSON.stringify({
         products: [$product.data('id')],
       }),
+      success: (data) => {
+        Object.keys(data).forEach((id) => {
+          $(`.product[data-id=${id}] .product--ui-wishlist`).addClass('active')
+        })
+      },
     })
   })
 });

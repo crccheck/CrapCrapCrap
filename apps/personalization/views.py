@@ -7,6 +7,11 @@ from apps.personalization.models import List, ListItem
 from apps.tracker.models import Product
 
 
+class WishlistDetail(View):
+    def get(self, request):
+        pass
+
+
 class ListToggle(View):
     def put(self, request):
         data = json.loads(request.body)
@@ -17,10 +22,12 @@ class ListToggle(View):
         except List.DoesNotExist:
             lis = request.user.lists.create(name='Wishlist')
 
+        ret = {}
         for product in products_to_add:
             ListItem.objects.get_or_create(list=lis, product=product)
+            ret[product.pk] = True
 
-        return JsonResponse({})
+        return JsonResponse(ret)
 
     def delete(self, request):
         data = json.loads(request.body)

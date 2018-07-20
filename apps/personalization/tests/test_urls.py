@@ -30,6 +30,7 @@ class ListToggleTests(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertIn(self.product, lis.products.all())
+        self.assertTrue(response.json()[str(self.product.pk)])
 
     def test_existing_product_to_list_is_noop(self):
         lis = ListFactory(owner=self.user)
