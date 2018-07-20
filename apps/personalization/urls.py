@@ -5,5 +5,6 @@ from . import views
 
 
 urlpatterns = [
-    path('api/list/toggle/', login_required(views.ListToggle.as_view()), name='list-toggle'),
+    path('api/list/', login_required(views.WishlistDetail.as_view()), name='wishlist-detail'),
+    path('api/list/toggle/', login_required(views.ListToggle.as_view()), name='wishlist-toggle'),
 ]

@@ -8,8 +8,18 @@ from apps.tracker.models import Product
 
 
 class WishlistDetail(View):
+    """
+    This might morph into a view that returns all the user state necessary.
+    """
     def get(self, request):
-        pass
+        try:
+            lis = request.user.lists.earliest('created')
+        except List.DoesNotExist:
+            lis = request.user.lists.create(name='Wishlist')
+
+        return JsonResponse({
+            'wishlist': list(lis.products.all().values_list('pk', flat=True)),
+        })
 
 
 class ListToggle(View):

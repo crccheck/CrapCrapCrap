@@ -8,8 +8,23 @@ from ..factories import ListFactory, UserFactory
 from ..models import ListItem
 
 
+class ListDetailTests(TestCase):
+    url = reverse('wishlist-detail')
+
+    def setUp(self):
+        self.client = Client()
+        self.product = ProductFactory()
+        self.lis = ListFactory()
+        ListItem.objects.create(list=self.lis, product=self.product)
+        self.client.force_login(self.lis.owner)
+
+    def test_returns_list_detail(self):
+        response = self.client.get(self.url)
+        self.assertEqual(response.json()['wishlist'], [self.product.pk])
+
+
 class ListToggleTests(TestCase):
-    url = reverse('list-toggle')
+    url = reverse('wishlist-toggle')
 
     def setUp(self):
         self.client = Client()
