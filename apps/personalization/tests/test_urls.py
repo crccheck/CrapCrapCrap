@@ -5,6 +5,7 @@ from django.urls import reverse
 
 from apps.tracker.factories import ProductFactory
 from ..factories import ListFactory
+from ..models import ListItem
 
 
 class ListToggleTests(TestCase):
@@ -13,9 +14,23 @@ class ListToggleTests(TestCase):
     def setUp(self):
         self.client = Client()
 
-    def test_response(self):
+    def test_adds_product_to_list(self):
         lis = ListFactory()
         product = ProductFactory()
+        self.client.force_login(lis.owner)
+
+        response = self.client.post(
+            self.url,
+            data=json.dumps({'products': [product.pk]}),
+            content_type='application/json')
+
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(product, lis.products.all())
+
+    def test_existing_product_to_list_is_noop(self):
+        lis = ListFactory()
+        product = ProductFactory()
+        ListItem.objects.create(list=lis, product=product)
         self.client.force_login(lis.owner)
 
         response = self.client.post(
