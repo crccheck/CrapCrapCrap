@@ -14,9 +14,15 @@ $.ajaxSetup({
 
 $('.product').each(function (idx, el) {
   const $product = $(el)
-  console.log($product.data('id'))
   $product.on('click', '.product--ui-wishlist', function (e, el) {
     e.preventDefault()
-    const $el = $(el)
+    const $el = $(this)
+    $.ajax($el.attr('href'), {
+      method: 'PUT',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        products: [$product.data('id')],
+      }),
+    })
   })
 });

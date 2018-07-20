@@ -1,6 +1,6 @@
 import json
 
-from django.http import HttpResponse
+from django.http import JsonResponse
 from django.views import View
 
 from apps.personalization.models import List, ListItem
@@ -20,7 +20,7 @@ class ListToggle(View):
         for product in products_to_add:
             ListItem.objects.get_or_create(list=lis, product=product)
 
-        return HttpResponse(json.dumps({}), content_type='application/json')
+        return JsonResponse({})
 
     def delete(self, request):
         data = json.loads(request.body)
@@ -34,4 +34,4 @@ class ListToggle(View):
         for product in products_to_del:
             r = ListItem.objects.filter(list=lis, product=product).delete()
 
-        return HttpResponse(json.dumps({}), content_type='application/json')
+        return JsonResponse({})
