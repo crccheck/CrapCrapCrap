@@ -11,6 +11,15 @@ from apps.tracker.models import Product
 class SearchList(TemplateView):
     template_name = 'search.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        query = self.request.GET.get('q')
+        if query:
+            context['products'] = Product.objects.filter(name__icontains=query)[:100]
+        else:
+            context['products'] = Product.objects.all().order_by('-price_drop_week')[:100]
+        return context
+
 
 class WishlistDetail(View):
     """
