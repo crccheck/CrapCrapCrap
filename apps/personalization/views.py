@@ -2,12 +2,28 @@ import json
 
 from django.http import JsonResponse
 from django.views import View
+from django.views.generic import ListView
 
 from apps.personalization.models import List, ListItem
 from apps.tracker.models import Product
 
 
-class WishlistDetail(View):
+class SearchList(ListView):
+    context_object_name = 'products'
+    model = Product
+    paginate_by = 100
+    template_name = 'search.html'
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        query = self.request.GET.get('q')
+        if query:
+            return qs.filter(name__icontains=query)
+
+        return qs.order_by('price_drop_week')
+
+
+class ApiWishlistDetail(View):
     """
     This might morph into a view that returns all the user state necessary.
     """
