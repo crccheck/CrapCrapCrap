@@ -9,7 +9,7 @@ from ..models import ListItem
 
 
 class ListToggleTests(TestCase):
-    url = reverse('list-toggle')
+    url = reverse('wishlist-toggle')
 
     def setUp(self):
         self.client = Client()

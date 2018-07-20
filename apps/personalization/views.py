@@ -8,6 +8,9 @@ from apps.tracker.models import Product
 
 
 class WishlistDetail(View):
+    """
+    This might morph into a view that returns all the user state necessary.
+    """
     def get(self, request):
         pass
 
