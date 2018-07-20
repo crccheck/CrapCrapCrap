@@ -17,7 +17,7 @@ class SearchList(TemplateView):
         if query:
             context['products'] = Product.objects.filter(name__icontains=query)[:100]
         else:
-            context['products'] = Product.objects.all().order_by('-price_drop_week')[:100]
+            context['products'] = Product.objects.all().order_by('price_drop_week')[:100]
         return context
 
 
