@@ -2,9 +2,14 @@ import json
 
 from django.http import JsonResponse
 from django.views import View
+from django.views.generic import TemplateView
 
 from apps.personalization.models import List, ListItem
 from apps.tracker.models import Product
+
+
+class SearchList(TemplateView):
+    template_name = 'search.html'
 
 
 class WishlistDetail(View):
