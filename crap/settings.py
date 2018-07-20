@@ -10,8 +10,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.getenv('SECRET_KEY', 'n9y25ah7')
 
 DEBUG = env.get('DEBUG', False)
-
-ALLOWED_HOSTS = ['*']
+INTERNAL_IPS = ['127.0.0.1']
+ALLOWED_HOSTS = ['*']  # Handled in Nginx
 
 
 # Application definition
@@ -29,6 +29,8 @@ INSTALLED_APPS = [
     'apps.tracker',
     'apps.personalization',
 ]
+if DEBUG:
+    INSTALLED_APPS.append('debug_toolbar')
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -40,6 +42,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+if DEBUG:
+    MIDDLEWARE.insert(0, 'debug_toolbar.middleware.DebugToolbarMiddleware')
 
 ROOT_URLCONF = 'crap.urls'
 
