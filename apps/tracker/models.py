@@ -1,11 +1,13 @@
 from django.db import models
 from django.utils import timezone
 
+from apps.personalization.models import pkgen
+
 
 class Property(models.Model):
     name = models.CharField(max_length=255, null=True, blank=True)
     url = models.URLField(unique=True)
-    # TODO slug = models.SlugField()
+    slug = models.SlugField(unique=True, null=True)
 
     class Meta:
         verbose_name_plural = 'properties'
@@ -15,6 +17,7 @@ class Property(models.Model):
 
 
 class Product(models.Model):
+    key = models.CharField(max_length=9, unique=True, default=pkgen)
     property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name='products')
     identifier = models.CharField(max_length=200)
     name = models.CharField(max_length=255, null=True, blank=True)

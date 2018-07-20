@@ -18,14 +18,14 @@ class WishlistDetail(View):
             lis = request.user.lists.create(name='Wishlist')
 
         return JsonResponse({
-            'wishlist': list(lis.products.all().values_list('pk', flat=True)),
+            'wishlist': list(lis.products.all().values_list('key', flat=True)),
         })
 
 
 class ListToggle(View):
     def put(self, request):
         data = json.loads(request.body)
-        products_to_add = Product.objects.filter(pk__in=data['products'])
+        products_to_add = Product.objects.filter(key__in=data['products'])
 
         try:
             lis = request.user.lists.earliest('created')
@@ -35,13 +35,13 @@ class ListToggle(View):
         ret = {}
         for product in products_to_add:
             ListItem.objects.get_or_create(list=lis, product=product)
-            ret[product.pk] = True
+            ret[product.key] = True
 
         return JsonResponse(ret)
 
     def delete(self, request):
         data = json.loads(request.body)
-        products_to_del = Product.objects.filter(pk__in=data['products'])
+        products_to_del = Product.objects.filter(key__in=data['products'])
 
         try:
             lis = request.user.lists.earliest('created')
@@ -51,6 +51,6 @@ class ListToggle(View):
         ret = {}
         for product in products_to_del:
             count, __ = ListItem.objects.filter(list=lis, product=product).delete()
-            ret[product.pk] = count
+            ret[product.key] = count
 
         return JsonResponse(ret)

@@ -15,6 +15,9 @@ admin: ## Set up a local admin/admin account
 	  User = get_user_model(); \
 	  User.objects.create_superuser('admin', 'admin@example.com', 'admin')" | python manage.py shell
 
+clean:
+	find . -type d -name "__pycache__" | xargs rm -rf
+
 lint: ## Run lint check
 	flake8
 

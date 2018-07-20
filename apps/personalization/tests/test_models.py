@@ -2,7 +2,12 @@ from django.test import TestCase
 
 from apps.tracker.factories import ProductFactory
 from ..factories import ListFactory
-from ..models import ListItem
+from ..models import pkgen, ListItem
+
+
+class PkgenTests(TestCase):
+    def test_uses_length(self):
+        self.assertEqual(len(pkgen(9)), 9)
 
 
 class ListTests(TestCase):
