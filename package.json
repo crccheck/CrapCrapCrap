@@ -3,12 +3,13 @@
   "version": "0.0.0",
   "description": "CrapCrapCrap",
   "scripts": {
-    "lint": "eslint --report-unused-disable-directives .",
+    "lint": "eslint --report-unused-disable-directives apps/tracker/static",
     "pretest": "npm lint"
   },
   "license": "UNLICENSED",
   "private": true,
   "devDependencies": {
+    "eslint": "^5.1.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-node": "^7.0.1",

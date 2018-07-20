@@ -9,7 +9,7 @@ $.ajaxSetup({
     if (csrftoken && !csrfSafeMethod(settings.type) && !this.crossDomain) {
       xhr.setRequestHeader('X-CSRFToken', csrftoken)
     }
-  }
+  },
 })
 
 $('.product').each(function (idx, el) {
@@ -32,4 +32,4 @@ $('.product').each(function (idx, el) {
       },
     })
   })
-});
+})
