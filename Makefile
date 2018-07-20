@@ -19,7 +19,6 @@ lint: ## Run lint check
 	flake8
 
 test: ## Run test suite
-test: lint
 	python manage.py test --noinput
 
 tdd: ## Run test watcher
