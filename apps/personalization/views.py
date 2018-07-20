@@ -23,6 +23,21 @@ class SearchList(ListView):
         return qs.order_by('price_drop_week')
 
 
+class WishlistDetail(ListView):
+    model = ListItem
+    paginate_by = 100
+    template_name = 'wishlist.html'
+
+    def get_queryset(self):
+        try:
+            lis = self.request.user.lists.earliest('created')
+        except List.DoesNotExist:
+            lis = self.request.user.lists.create(name='Wishlist')
+
+        qs = super().get_queryset()
+        return qs.filter(list=lis)
+
+
 class ApiWishlistDetail(View):
     """
     This might morph into a view that returns all the user state necessary.

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load cool_paginate %}
+
+{% block title %}My Wishlist{% endblock %}
+
+{% block body %}
+  <h2>My Wishlist</h2>
+  <ul>
+    {% for item in object_list %}
+      <li>{% include "includes/product.html" with product=item.product %}</li>
+    {% endfor %}
+  </ul>
+  {% cool_paginate %}
+{% endblock %}
