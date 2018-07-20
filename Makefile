@@ -25,6 +25,9 @@ lint: ## Run lint check
 dev: ## Run staticfiles watcher
 	node_modules/.bin/watchify src/app.js --debug -o apps/tracker/static/app.js
 
+dev/browser-sync:
+	node_modules/.bin/browser-sync start --proxy localhost:8000 --files "apps/tracker/static/*"
+
 build:
 	node_modules/.bin/browserify src/app.js -o apps/tracker/static/app.js
 

@@ -8,6 +8,7 @@
     "browserify": "^16.2.2"
   },
   "devDependencies": {
+    "browser-sync": "^2.24.5",
     "eslint": "^5.1.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.13.0",
