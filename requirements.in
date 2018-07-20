@@ -1,5 +1,6 @@
 dj-database-url
 Django
+django-cool-pagination
 django-extensions
 project_runpy
 psycopg2-binary
