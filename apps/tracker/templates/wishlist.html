@@ -10,5 +10,8 @@
       <li>{% include "includes/product.html" with product=item.product %}</li>
     {% endfor %}
   </ul>
-  {% cool_paginate %}
+
+  {% if is_paginated %}
+    {% cool_paginate %}
+  {% endif %}
 {% endblock %}

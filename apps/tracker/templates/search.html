@@ -14,5 +14,7 @@
       <li>{% include "includes/product.html" %}</li>
     {% endfor %}
   </ul>
-  {% cool_paginate %}
+  {% if is_paginated %}
+    {% cool_paginate %}
+  {% endif %}
 {% endblock %}
