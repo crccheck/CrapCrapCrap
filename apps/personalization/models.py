@@ -26,7 +26,7 @@ def pkgen(length=9):
 
 class List(models.Model):
     """A wishlist"""
-    key = models.CharField(max_length=9, primary_key=True, default=pkgen)
+    key = models.CharField(max_length=9, unique=True, default=pkgen)
     name = models.CharField(max_length=255)
     owner = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='lists')
