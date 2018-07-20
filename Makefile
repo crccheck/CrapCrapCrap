@@ -22,6 +22,9 @@ lint: ## Run lint check
 	flake8
 	node_modules/.bin/eslint --report-unused-disable-directives src/
 
+dev:
+	node_modules/.bin/watchify src/app.js --debug -o apps/tracker/static/app.js
+
 build:
 	node_modules/.bin/browserify src/app.js -o apps/tracker/static/app.js
 
