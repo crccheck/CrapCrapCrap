@@ -1,0 +1,4 @@
+<div class="product" data-id="{{ product.pk }}">
+  <a href="{{ product.url }}" rel="noreferrer">{{ product }}</a>
+  <a href="{% url 'list-toggle' %}" class="product--ui-wishlist wishlist-loading">❤️</a>
+</div>
