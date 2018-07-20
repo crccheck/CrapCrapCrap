@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='product',
             name='key',
-            field=models.CharField(default=apps.personalization.models.pkgen, max_length=9, unique=True),
+            field=models.CharField(default=apps.personalization.models.pkgen, max_length=9, null=True),
         ),
         migrations.AddField(
             model_name='property',
