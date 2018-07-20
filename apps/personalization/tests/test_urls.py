@@ -17,10 +17,13 @@ class ListToggleTests(TestCase):
         self.user = UserFactory()
         self.client.force_login(self.user)
 
+    # PUT
+    #####
+
     def test_adds_product_to_list(self):
         lis = ListFactory(owner=self.user)
 
-        response = self.client.post(
+        response = self.client.put(
             self.url,
             data=json.dumps({'products': [self.product.pk]}),
             content_type='application/json')
@@ -32,7 +35,7 @@ class ListToggleTests(TestCase):
         lis = ListFactory(owner=self.user)
         ListItem.objects.create(list=lis, product=self.product)
 
-        response = self.client.post(
+        response = self.client.put(
             self.url,
             data=json.dumps({'products': [self.product.pk]}),
             content_type='application/json')
@@ -41,7 +44,7 @@ class ListToggleTests(TestCase):
         self.assertIn(self.product, lis.products.all())
 
     def test_list_is_created_if_user_has_none(self):
-        response = self.client.post(
+        response = self.client.put(
             self.url,
             data=json.dumps({'products': [self.product.pk]}),
             content_type='application/json')
