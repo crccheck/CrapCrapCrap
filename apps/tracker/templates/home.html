@@ -3,10 +3,6 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
-  <h2>Search</h2>
-  <form action="{% url 'search' %}" method="GET">
-    <input type="search" name="q">
-  </form>
   <h2>Latest products</h2>
   <ul>
     {% for product in products %}
