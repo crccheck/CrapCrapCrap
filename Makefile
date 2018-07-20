@@ -22,11 +22,21 @@ lint: ## Run lint check
 	flake8
 	node_modules/.bin/eslint --report-unused-disable-directives src/
 
-dev: ## Run staticfiles watcher
+dev: ## Start dev server
+	@${MAKE} -s -j3 _dev
+
+_dev: dev/js dev/browser-sync dev/django
+
+dev/django:
+	python manage.py runserver 0.0.0.0:35272
+
+dev/js:
 	node_modules/.bin/watchify src/app.js --debug -o apps/tracker/static/app.js
 
 dev/browser-sync:
-	node_modules/.bin/browser-sync start --proxy localhost:8000 --files "apps/tracker/static/*"
+	node_modules/.bin/browser-sync start --proxy localhost:35272 \
+	  --no-open --no-ui \
+	  --files "apps/tracker/static/*"
 
 build:
 	node_modules/.bin/browserify src/app.js -o apps/tracker/static/app.js
