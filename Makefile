@@ -38,7 +38,7 @@ dev/browser-sync:
 	  --no-open --no-ui \
 	  --files "apps/tracker/static/*"
 
-build:
+build: ## Do a production build of static assets
 	node_modules/.bin/browserify src/app.js -o apps/tracker/static/app.js
 
 test: ## Run test suite

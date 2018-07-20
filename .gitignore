@@ -6,6 +6,5 @@ package-lock.json
 browser_ext/web-ext-artifacts/
 apps/tracker/static/app.js
 
-
 # Dev
 *.dump
