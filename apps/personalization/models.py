@@ -9,6 +9,8 @@ class List(models.Model):
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='lists')
     products = models.ManyToManyField(
         'tracker.Product', through='ListItem', related_name='lists')
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f'{self.owner} {self.name}'
