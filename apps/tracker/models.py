@@ -5,6 +5,7 @@ from django.utils import timezone
 class Property(models.Model):
     name = models.CharField(max_length=255, null=True, blank=True)
     url = models.URLField(unique=True)
+    # TODO slug = models.SlugField()
 
     class Meta:
         verbose_name_plural = 'properties'
