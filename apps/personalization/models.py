@@ -7,7 +7,8 @@ class List(models.Model):
     name = models.CharField(max_length=255)
     owner = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='lists')
-    items = models.ManyToManyField('tracker.Product', through='ListItem', related_name='lists')
+    products = models.ManyToManyField(
+        'tracker.Product', through='ListItem', related_name='lists')
 
     def __str__(self):
         return f'{self.owner} {self.name}'

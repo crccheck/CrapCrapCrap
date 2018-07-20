@@ -15,5 +15,5 @@ class ListTests(TestCase):
         ListItem.objects.create(product=ProductFactory(), list=lis)
 
         self.assertEqual(product.lists.count(), 1)
-        self.assertEqual(lis.items.count(), 2)
+        self.assertEqual(lis.products.count(), 2)
         self.assertEqual(lis.owner.lists.count(), 1)

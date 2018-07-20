@@ -22,4 +22,6 @@ class ListToggleTests(TestCase):
             self.url,
             data=json.dumps({'products': [product.pk]}),
             content_type='application/json')
+
         self.assertEqual(response.status_code, 200)
+        self.assertIn(product, lis.products.all())
