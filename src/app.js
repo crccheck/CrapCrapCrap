@@ -1,5 +1,5 @@
 // https://docs.djangoproject.com/en/2.0/ref/csrf/#setting-the-token-on-the-ajax-request
-const csrftoken = document.cookie.match(/csrftoken=(\w+);/)[1]
+const csrftoken = document.cookie.match(/csrftoken=(\w+);?/)[1]
 function csrfSafeMethod (method) {
   // these HTTP methods do not require CSRF protection
   return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method))

@@ -20,6 +20,10 @@ clean:
 
 lint: ## Run lint check
 	flake8
+	node_modules/.bin/eslint --report-unused-disable-directives src/
+
+build:
+	node_modules/.bin/browserify src/app.js -o apps/tracker/static/app.js
 
 test: ## Run test suite
 	python manage.py test --noinput
