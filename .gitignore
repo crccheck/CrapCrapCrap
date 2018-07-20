@@ -1,4 +1,6 @@
 __pycache__
 browser_ext/web-ext-artifacts/
+node_modules
+package-lock.json
 
 *.dump
