@@ -38,7 +38,9 @@ class ListToggle(View):
         except List.DoesNotExist:
             lis = request.user.lists.create(name='Wishlist')
 
+        ret = {}
         for product in products_to_del:
-            r = ListItem.objects.filter(list=lis, product=product).delete()
+            count, __ = ListItem.objects.filter(list=lis, product=product).delete()
+            ret[product.pk] = count
 
-        return JsonResponse({})
+        return JsonResponse(ret)
