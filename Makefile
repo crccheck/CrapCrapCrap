@@ -35,7 +35,7 @@ dev/js:
 
 dev/browser-sync:
 	node_modules/.bin/browser-sync start --proxy localhost:35272 \
-	  --no-open --no-ui \
+	  --no-open --no-ui --no-notify \
 	  --files "apps/tracker/static/*"
 
 build: ## Do a production build of static assets
