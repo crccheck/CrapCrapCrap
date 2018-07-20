@@ -33,6 +33,5 @@ class ListToggle(View):
 
         for product in products_to_del:
             r = ListItem.objects.filter(list=lis, product=product).delete()
-            print(r)
 
         return HttpResponse(json.dumps({}), content_type='application/json')

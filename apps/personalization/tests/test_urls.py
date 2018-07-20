@@ -53,3 +53,29 @@ class ListToggleTests(TestCase):
         lis = self.user.lists.get()
         self.assertEqual(response.status_code, 200)
         self.assertIn(self.product, lis.products.all())
+
+    # DELETE
+    ########
+
+    def test_deletes_nothing_from_empty_list(self):
+        lis = ListFactory(owner=self.user)
+
+        response = self.client.delete(
+            self.url,
+            data=json.dumps({'products': [self.product.pk]}),
+            content_type='application/json')
+
+        self.assertEqual(response.status_code, 200)
+        self.assertNotIn(self.product, lis.products.all())
+
+    def test_deletes_product_from_empty_list(self):
+        lis = ListFactory(owner=self.user)
+        ListItem.objects.create(list=lis, product=self.product)
+
+        response = self.client.delete(
+            self.url,
+            data=json.dumps({'products': [self.product.pk]}),
+            content_type='application/json')
+
+        self.assertEqual(response.status_code, 200)
+        self.assertNotIn(self.product, lis.products.all())
