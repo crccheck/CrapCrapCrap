@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'django_cool_paginator',
+    'social_django',
 
     'apps.tracker',
     'apps.personalization',
@@ -73,10 +74,10 @@ DATABASES = {
     'default': dj_database_url.config(default='postgres:///crap'),
 }
 
+# Auth
+######
 
-# Password validation
-# https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
-
+SOCIAL_AUTH_POSTGRES_JSONFIELD = True
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
