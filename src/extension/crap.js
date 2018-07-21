@@ -14,7 +14,7 @@ function sendUpdate (data) {
     v: 1,
   }
   // debug(JSON.stringify(payload, null, 2))
-  debug('sendUpdate %d items', data.length)
+  debug('sendUpdate %d items to %s', data.length, TRACK_URL)
   fetch(TRACK_URL, {
     method: 'POST',
     headers: {
