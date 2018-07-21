@@ -43,6 +43,7 @@ dev/extension:
 
 build: ## Do a production build of static assets
 	node_modules/.bin/browserify src/app.js -o apps/tracker/static/app.js
+	node_modules/.bin/browserify src/extension/crap.js -o browser_ext/crap.js
 
 test: ## Run test suite
 	env $$(cat example.env | xargs) python manage.py test --noinput
