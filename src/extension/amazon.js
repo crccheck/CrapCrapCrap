@@ -6,7 +6,7 @@ exports.amazon = function amazon () {
   debug('identifier', identifier)
   const name = document.getElementById('productTitle').textContent.trim()
   debug('name', name)
-  const $price = document.querySelector('#_mediaPrice .value, #priceblock_ourprice')
+  const $price = document.querySelector('#_mediaPrice .value, #priceblock_ourprice, #buyNewSection .offer-price')
   const price = $price.textContent.replace(/[$,]/g, '').trim().replace(/\s+/, '.')
   debug('price', price)
   return [{name, identifier, url, price}]
