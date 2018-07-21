@@ -1,14 +1,13 @@
-const TRACK_URL = 'https://tracker.craptobuy.com/receive/'
-// const TRACK_URL = 'http://localhost:8000/receive/'
-const DEBUG = 1
+const DEBUG = process.env.NODE_ENV !== 'production'
+const TRACK_URL = DEBUG ? 'http://localhost:35272/receive/' : 'https://tracker.craptobuy.com/receive/'
 
-function debug(arg0, ...args) {
+function debug (arg0, ...args) {
   if (!DEBUG) { return }
 
   console.log(`CrapCrapCrap ${arg0}`, ...args)
 }
 
-function sendUpdate(data) {
+function sendUpdate (data) {
   const payload = {
     referrer: window.location.href,
     data,
@@ -27,8 +26,8 @@ function sendUpdate(data) {
     .catch(console.error)
 }
 
-function bigbadtoystore() {
-  const [,pageType] = window.location.pathname.split('/')
+function bigbadtoystore () {
+  const [, pageType] = window.location.pathname.split('/')
   switch (pageType) {
     case 'Search': {
       debug('analyzing', pageType)
@@ -43,12 +42,12 @@ function bigbadtoystore() {
         const $name = $parent.querySelector('.product-name')
         const name = $name.textContent.trim()
         const url = $name.parentElement.href
-        const [,identifier] = url.match(/VariationDetails\/(\d+)/)
+        const [, identifier] = url.match(/VariationDetails\/(\d+)/)
         data.push({ name, identifier, url, price })
       })
       sendUpdate(data)
     }
-    break
+      break
     case 'Product': {
       debug('analyzing', pageType)
       const $price = document.querySelector('.price')
@@ -56,18 +55,18 @@ function bigbadtoystore() {
       const name = document.querySelector('.product-header h3').textContent.trim()
       const identifier = document.getElementById('ProductVariationId').value
       const url = window.location.href
-      sendUpdate([{ name, identifier, url, price}])
+      sendUpdate([{name, identifier, url, price}])
     }
-    break
+      break
   }
 }
 
-function main() {
+function main () {
   debug('started')
   switch (window.location.host) {
     case 'www.bigbadtoystore.com':
       bigbadtoystore()
-    break
+      break
   }
 }
 

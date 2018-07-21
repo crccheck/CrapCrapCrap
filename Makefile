@@ -50,11 +50,11 @@ build: ## Do a production build of static assets
 # BROWSER EXTENSION
 
 ext/dev:
-	node_modules/.bin/watchify src/extension/crap.js -o browser_ext/crap.js
-	# web-ext run --url https://www.bigbadtoystore.com/Search?HideSoldOut=true&InventoryStatus=sa%2Ci%2Cp&SortOrder=Bestselling
+	cd browser_ext && web-ext run --url https://www.bigbadtoystore.com/Search?HideSoldOut=true&InventoryStatus=sa%2Ci%2Cp&SortOrder=Bestselling
+	node_modules/.bin/watchify -t envify src/extension/crap.js -o browser_ext/crap.js
 
 ext/build:
-	NODE_ENV=production node_modules/.bin/browserify src/extension/crap.js -o browser_ext/crap.js
+	NODE_ENV=production node_modules/.bin/browserify -t envify src/extension/crap.js -o browser_ext/crap.js
 	NODE_ENV=production node src/extension/build_manifest.js > browser_ext/manifest.json
 	cd browser_ext && web-ext build
 

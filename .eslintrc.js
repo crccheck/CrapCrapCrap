@@ -1,8 +1,9 @@
 module.exports = {
   extends: 'standard',
   env: {
+    browser: true,
     jquery: true,
-    mocha: true
+    mocha: true,
   },
   rules: {
     // Lets you manipulate lines easier and have cleaner diffs
