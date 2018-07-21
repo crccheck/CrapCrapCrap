@@ -100,6 +100,8 @@ AUTHENTICATION_BACKENDS = (
 SOCIAL_AUTH_AMAZON_KEY = env.require('SOCIAL_AUTH_AMAZON_KEY')
 SOCIAL_AUTH_AMAZON_SECRET = env.require('SOCIAL_AUTH_AMAZON_SECRET')
 SOCIAL_AUTH_POSTGRES_JSONFIELD = True
+# https://python-social-auth.readthedocs.io/en/latest/pipeline.html#authentication-pipeline
+# https://python-social-auth.readthedocs.io/en/latest/configuration/django.html?highlight=social_core.pipeline.user.user_details#personalized-configuration
 SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.social_details',
     'social_core.pipeline.social_auth.social_uid',
@@ -109,7 +111,6 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.associate_user',
     'social_core.pipeline.social_auth.load_extra_data',
     'social_core.pipeline.user.user_details',
-    'social_core.pipeline.social_auth.associate_by_email',
 )
 
 # Internationalization

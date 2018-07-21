@@ -1,3 +1,35 @@
 {% extends "base.html" %}
 
 {% block title %}Profile{% endblock %}
+
+{% block body %}
+  <h2>My profile</h2>
+
+  <h3>Profile info</h3>
+  <p>Your account is managed by Amazon. If you want to edit this information, you'll have to do it there.</p>
+  <dl class="row">
+    <dt class="col-2">Email</dt>
+    <dd class="col-9">{{ request.user.email }}</dd>
+  </dl>
+
+  <h3>My lists</h3>
+
+  <ul>
+    <li><a href="{% url 'wishlist' %}">Wishlist</a></li>
+  </ul>
+
+  <h3>Download all my data</h3>
+
+  <p><em>coming soon</em></p>
+
+  <h3>Delete my account</h3>
+
+  <p><em>coming soon</em></p>
+
+  <h3>Logout</h3>
+  <form method="POST" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button class="btn btn-link">Log out</button>
+  </form>
+
+{% endblock %}
