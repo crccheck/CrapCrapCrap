@@ -58,6 +58,7 @@ ext/build: ## Build browser extension artifact
 	node_modules/.bin/browserify -t [ envify purge --NODE_ENV production ] src/extension/crap.js -o browser_ext/crap.js
 	NODE_ENV=production node src/extension/build_manifest.js > browser_ext/manifest.json
 	cd browser_ext && web-ext build
+	@echo Submit it at https://addons.mozilla.org/en-US/developers/addon/submit/distribution
 
 ext/publish: ## Publish browser extension XPI
 	rsync -avz browser_ext/web-ext-artifacts/*.xpi dh:addons.craptobuy.com/downloads
