@@ -8,6 +8,7 @@ from apps.tracker.views import ReceiverView, HomeView
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
     path('', include('apps.personalization.urls')),
+    path('', include('social_django.urls', namespace='social')),
     path('admin/', admin.site.urls),
     path('receive/', csrf_exempt(ReceiverView.as_view())),
 ]

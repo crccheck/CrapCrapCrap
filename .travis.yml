@@ -2,5 +2,8 @@ language: python
 cache: pip
 python: "3.6"
 services: postgresql
+addons:
+  # TravisCI uses 9.2 by default
+  postgresql: "9.6"
 install: pip install -r requirements.txt
 script: make test
