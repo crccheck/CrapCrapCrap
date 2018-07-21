@@ -22,6 +22,12 @@ lint: ## Run lint check
 	flake8
 	node_modules/.bin/eslint --report-unused-disable-directives src/
 
+test: ## Run test suite
+	env $$(cat example.env | xargs) python manage.py test --noinput
+
+tdd: ## Run test watcher
+	nodemon -e py -x ./manage.py test --failfast --keepdb
+
 dev: ## Start dev server
 	@${MAKE} -s -j3 _dev
 
@@ -38,15 +44,16 @@ dev/browser-sync:
 	  --no-open --no-ui --no-notify \
 	  --files "apps/tracker/static/*"
 
-dev/extension:
-	node_modules/.bin/watchify src/extension/crap.js -o browser_ext/crap.js
-
 build: ## Do a production build of static assets
 	node_modules/.bin/browserify src/app.js -o apps/tracker/static/app.js
-	node_modules/.bin/browserify src/extension/crap.js -o browser_ext/crap.js
 
-test: ## Run test suite
-	env $$(cat example.env | xargs) python manage.py test --noinput
+# BROWSER EXTENSION
 
-tdd: ## Run test watcher
-	nodemon -e py -x ./manage.py test --failfast --keepdb
+ext/dev:
+	node_modules/.bin/watchify src/extension/crap.js -o browser_ext/crap.js
+	# web-ext run --url https://www.bigbadtoystore.com/Search?HideSoldOut=true&InventoryStatus=sa%2Ci%2Cp&SortOrder=Bestselling
+
+ext/build:
+	NODE_ENV=production node_modules/.bin/browserify src/extension/crap.js -o browser_ext/crap.js
+	NODE_ENV=production node src/extension/build_manifest.js > browser_ext/manifest.json
+	cd browser_ext && web-ext build
