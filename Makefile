@@ -38,6 +38,9 @@ dev/browser-sync:
 	  --no-open --no-ui --no-notify \
 	  --files "apps/tracker/static/*"
 
+dev/extension:
+	node_modules/.bin/watchify src/extension/crap.js -o browser_ext/crap.js
+
 build: ## Do a production build of static assets
 	node_modules/.bin/browserify src/app.js -o apps/tracker/static/app.js
 

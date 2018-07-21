@@ -3,6 +3,7 @@ node_modules
 package-lock.json
 
 # Build artifacts
+browser_ext/crap.js
 browser_ext/web-ext-artifacts/
 apps/tracker/static/app.js
 
