@@ -4,7 +4,7 @@ from django.contrib.auth import logout
 from django.http import JsonResponse, HttpResponseRedirect, HttpResponseBadRequest
 from django.urls import reverse
 from django.views import View
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView
 
 from apps.personalization.models import List, ListItem
 from apps.tracker.models import Product
@@ -17,6 +17,10 @@ class Logout(View):
 
         logout(request)
         return HttpResponseRedirect(reverse('home'))
+
+
+class Profile(TemplateView):
+    template_name = 'profile.html'
 
 
 class SearchList(ListView):
