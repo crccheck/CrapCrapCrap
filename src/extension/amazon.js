@@ -1,17 +1,13 @@
 const { debug } = require('./utils')
 
 exports.amazon = function amazon () {
-  const aState = {}
-  document.querySelectorAll('script[type=a-state]').forEach((x) => {
-    const { key } = JSON.parse(x.dataset.aState)
-    aState[key] = JSON.parse(x.innerHTML)
-  })
-  // console.log('hi', )
-  debug('aState', aState)
-  const $price = document.querySelector('#_mediaPrice .value')
-  const price = $price.textContent.trim().replace(/[$,]/g, '')
-  const name = document.getElementById('productTitle').textContent.trim()
-  const identifier = aState['URL-Refresh-State'].landingAsin
   const url = document.querySelector('link[rel=canonical]').href
+  const identifier = url.match(/\/dp\/(\w+)/)[1]
+  debug('identifier', identifier)
+  const name = document.getElementById('productTitle').textContent.trim()
+  debug('name', name)
+  const $price = document.querySelector('#_mediaPrice .value, #priceblock_ourprice')
+  const price = $price.textContent.replace(/[$,]/g, '').trim().replace(/\s+/, '.')
+  debug('price', price)
   return [{name, identifier, url, price}]
 }
