@@ -1,11 +1,14 @@
-const { debug } = require('./utils')
+const { debug, sendUpdate } = require('./utils')
 const { bigbadtoystore } = require('./bbts')
 
 function main () {
   debug('started')
   switch (window.location.host) {
     case 'www.bigbadtoystore.com':
-      bigbadtoystore()
+      const data = bigbadtoystore()
+      if (data) {
+        sendUpdate(data)
+      }
       break
   }
 }

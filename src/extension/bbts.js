@@ -1,4 +1,4 @@
-const { debug, sendUpdate } = require('./utils')
+const { debug } = require('./utils')
 
 exports.bigbadtoystore = function bigbadtoystore () {
   const [, pageType] = window.location.pathname.split('/')
@@ -19,9 +19,8 @@ exports.bigbadtoystore = function bigbadtoystore () {
         const [, identifier] = url.match(/VariationDetails\/(\d+)/)
         data.push({ name, identifier, url, price })
       })
-      sendUpdate(data)
+      return data
     }
-      break
     case 'Product': {
       debug('analyzing', pageType)
       const $price = document.querySelector('.price')
@@ -29,8 +28,7 @@ exports.bigbadtoystore = function bigbadtoystore () {
       const name = document.querySelector('.product-header h3').textContent.trim()
       const identifier = document.getElementById('ProductVariationId').value
       const url = window.location.href
-      sendUpdate([{name, identifier, url, price}])
+      return ([{name, identifier, url, price}])
     }
-      break
   }
 }
