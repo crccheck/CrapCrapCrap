@@ -2,9 +2,9 @@ const DEBUG = process.env.NODE_ENV !== 'production'
 const TRACK_URL = DEBUG ? 'http://localhost:35272/receive/' : 'https://tracker.craptobuy.com/receive/'
 
 exports.debug = function debug (arg0, ...args) {
-  if (!DEBUG) { return }
+  // if (!DEBUG) { return }
 
-  console.log(`CrapCrapCrap ${arg0}`, ...args)
+  console.log(`CRAPCRAPCRAP ${arg0}`, ...args)
 }
 
 exports.sendUpdate = function sendUpdate (data) {
