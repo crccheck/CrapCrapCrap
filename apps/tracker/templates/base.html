@@ -9,15 +9,29 @@
   <link rel="stylesheet" href="{% static "app.css" %}">
 </head>
 <body>
-  <nav class="navbar sticky-top navbar-dark bg-dark">
-    <a class="navbar-brand" href="{% url 'home' %}" title="CrapCrapCrap">Crap&sup3;</a>
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'wishlist' %}">My Wishlist</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'social:begin' 'amazon' %}">Amazon</a>
-      </li>
+  <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="{% url 'home' %}" title="CrapCrapCrap">💩&sup3;</a>
+    <ul class="navbar-nav ml-auto">
+      {% if request.user.is_authenticated %}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ request.user }}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">My profile</a>
+            <a class="dropdown-item" href="{% url 'wishlist' %}">My watches</a>
+            <div class="dropdown-divider"></div>
+            <form method="POST" action="{% url 'logout' %}">
+              {% csrf_token %}
+              <button class="dropdown-item">Log out</button>
+            </form>
+          </div>
+        </li>
+      {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'social:begin' 'amazon' %}">Login with Amazon</a>
+        </li>
+      {% endif %}
     </ul>
 
     <form class="form-inline my-2 my-lg-0" action="{% url 'search' %}" method="GET">
@@ -25,6 +39,7 @@
       <button class="btn btn-outline-outline my-2 my-sm-0" type="submit">Search</button>
     </form>
   </nav>
+
   <div class="container">
     {% block body %}{% endblock %}
   </div>
