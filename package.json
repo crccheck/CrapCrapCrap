@@ -1,11 +1,12 @@
 {
   "name": "crapcrapcrap",
-  "version": "0.0.0",
+  "version": "0.1.1",
   "description": "CrapCrapCrap",
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
-    "browserify": "^16.2.2"
+    "browserify": "^16.2.2",
+    "envify": "^4.1.0"
   },
   "devDependencies": {
     "browser-sync": "^2.24.5",

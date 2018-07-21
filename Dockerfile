@@ -14,7 +14,7 @@ COPY package.json /app/package.json
 RUN npm install --production
 COPY . /app
 RUN make build
-RUN ./manage.py collectstatic --noinput
+RUN env $(cat example.env | xargs) ./manage.py collectstatic --noinput
 
 EXPOSE 8000
 HEALTHCHECK CMD nc -z localhost 8000
