@@ -3,7 +3,6 @@ const { bigbadtoystore } = require('./bbts')
 const { amazon } = require('./amazon')
 
 function main () {
-  console.log('HHHHHHHHHHHHHHHHH')
   debug('started')
   let data
   switch (window.location.host) {
