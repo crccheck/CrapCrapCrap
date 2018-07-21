@@ -2,7 +2,7 @@ language: python
 cache: pip
 python: "3.6"
 services: postgresql
-env:
+global:
   - SOCIAL_AUTH_AMAZON_KEY=test
   - SOCIAL_AUTH_AMAZON_SECRET=test
 install: pip install -r requirements.txt
