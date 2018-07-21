@@ -1,11 +1,22 @@
 import json
 
-from django.http import JsonResponse
+from django.contrib.auth import logout
+from django.http import JsonResponse, HttpResponseRedirect, HttpResponseBadRequest
+from django.urls import reverse
 from django.views import View
 from django.views.generic import ListView
 
 from apps.personalization.models import List, ListItem
 from apps.tracker.models import Product
+
+
+class Logout(View):
+    def post(self, request):
+        if request.user.is_anonymous:
+            return HttpResponseBadRequest()
+
+        logout(request)
+        return HttpResponseRedirect(reverse('home'))
 
 
 class SearchList(ListView):
