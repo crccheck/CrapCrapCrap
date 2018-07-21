@@ -13,7 +13,7 @@ function main () {
       data = bigbadtoystore()
       break
   }
-  if (data) {
+  if (data && data.length) {
     sendUpdate(data)
   }
 }
