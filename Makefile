@@ -42,7 +42,7 @@ build: ## Do a production build of static assets
 	node_modules/.bin/browserify src/app.js -o apps/tracker/static/app.js
 
 test: ## Run test suite
-	python manage.py test --noinput
+	env $(cat example.env | xargs) python manage.py test --noinput
 
 tdd: ## Run test watcher
 	nodemon -e py -x ./manage.py test --failfast --keepdb
