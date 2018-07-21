@@ -57,3 +57,6 @@ ext/build:
 	NODE_ENV=production node_modules/.bin/browserify src/extension/crap.js -o browser_ext/crap.js
 	NODE_ENV=production node src/extension/build_manifest.js > browser_ext/manifest.json
 	cd browser_ext && web-ext build
+
+ext/publish:
+	rsync -avz browser_ext/web-ext-artifacts/*.xpi dh:addons.craptobuy.com/downloads
