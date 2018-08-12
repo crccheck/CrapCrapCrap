@@ -5,7 +5,7 @@ RUN apk add --no-cache \
   # psycopg2
   postgresql-dev gcc musl-dev \
   # staticfiles build
-  nodejs make
+  nodejs nodejs-npm make
 
 WORKDIR /app
 COPY requirements.txt /app/requirements.txt
