@@ -94,6 +94,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 AUTHENTICATION_BACKENDS = (
+    # https://sellercentral.amazon.com/home?cor=login_NA&
     'social_core.backends.amazon.AmazonOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
