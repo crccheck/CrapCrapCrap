@@ -94,6 +94,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 AUTHENTICATION_BACKENDS = (
+    # https://sellercentral.amazon.com/home?cor=login_NA&
     'social_core.backends.amazon.AmazonOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
@@ -112,6 +113,8 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.load_extra_data',
     'social_core.pipeline.user.user_details',
 )
+if not DEBUG:
+    SOCIAL_AUTH_REDIRECT_IS_HTTPS = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
