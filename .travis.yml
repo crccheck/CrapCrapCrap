@@ -1,6 +1,6 @@
 language: python
 cache: pip
-python: "3.6"
+python: "3.7"
 services: postgresql
 addons:
   # TravisCI uses 9.2 by default
