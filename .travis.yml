@@ -1,8 +1,6 @@
 language: python
+python: "3.6"  # TravisCI doesn't support 3.7 https://github.com/travis-ci/travis-ci/issues/9815
 cache: pip
-python: "3.7"
-dist: xenial  # required for Python 3.7
-sudo: true  # required for Python 3.7
 services: postgresql
 addons:
   # TravisCI uses 9.2 by default
