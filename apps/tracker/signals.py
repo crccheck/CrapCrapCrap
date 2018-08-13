@@ -19,11 +19,10 @@ def update_product_pricing(sender, point: TrackPoint, **kwargs):
 
     product = point.product
     point.refresh_from_db()  # make sure `price` isn't a str
-    points = product.prices.filter(timestamp__gte=now() - dt.timedelta(days=7, minutes=1))
     week_prices = []
-    one_day_ago = now() - dt.timedelta(days=1, minutes=1)
     day_prices = []
-    for x in points:
+    one_day_ago = now() - dt.timedelta(days=1, minutes=1)
+    for x in product.prices.filter(timestamp__gte=week_ago):
         week_prices.append(x.price)
         if x.timestamp > one_day_ago:
             day_prices.append(x.price)
@@ -38,18 +37,21 @@ def update_product_pricing(sender, point: TrackPoint, **kwargs):
     # )
     min_prices = [product.min_price] + week_prices
     min_prices = [x for x in min_prices if x]
-
     product.min_price = min(min_prices)
+
     product.last_price = point.price
     product.last_price_check = point.timestamp
+
     if day_prices:
         product.price_drop_day = max(day_prices) - point.price
     else:
         product.price_drop_day = 0
     product.price_drop_week = max(week_prices) - point.price
+
     price_bases = [product.last_price] + week_prices
     price_bases = [x for x in price_bases if x]
     product.price_base = max(price_bases)
+
     product.save()
 
 
