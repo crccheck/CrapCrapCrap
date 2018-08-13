@@ -9,9 +9,18 @@ from ..signals import track_point_added
 
 
 class TrackPointTests(TestCase):
+    def test_old_track_point_adds_nothing(self):
+        point = TrackPointFactory(
+            timestamp=timezone.now() - dt.timedelta(days=8),
+            price='10',
+        )
+        track_point_added.send(sender=self, point=point)
+
+        self.assertEqual(point.product.last_price, None)
+
     def test_pricing_information_is_added_to_product(self):
         product = ProductFactory()
-        prices = list(range(1000, 1090, 10))
+        prices = list(range(1000, 1070, 10))
         beginning = timezone.now() - dt.timedelta(days=len(prices))
         shuffle(prices)
         for idx, x in enumerate(prices):
