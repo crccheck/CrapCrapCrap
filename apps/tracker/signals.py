@@ -19,7 +19,7 @@ def update_product_pricing(sender, product, **kwargs):
         week_diff=max_week - latest_track.price,
         day_diff=max_day - latest_track.price,
     )
-    min_prices = [product.last_price, latest_track.price]
+    min_prices = [product.min_price, product.last_price, latest_track.price]
     min_prices = [x for x in min_prices if x]
     product.min_price = min(min_prices)
     product.last_price = latest_track.price
