@@ -1,7 +1,7 @@
 import datetime as dt
 
 from django.utils.timezone import now
-from django.db.models import Max, Q
+from django.db.models import Count, Max, Q
 from django.dispatch import Signal
 
 
@@ -16,6 +16,7 @@ def update_product_pricing(sender, point, **kwargs):
     max_week = Max('price', filter=Q(timestamp__gte=now() - dt.timedelta(days=7, minutes=1)))
     max_day = Max('price', filter=Q(timestamp__gte=now() - dt.timedelta(days=1, minutes=1)))
     out = product.prices.aggregate(
+        count=Count('id'),
         max_week=max_week,
         week_diff=max_week - point.price,
         day_diff=max_day - point.price,

@@ -1,4 +1,5 @@
 import datetime as dt
+from random import shuffle
 
 from django.test import TestCase
 from django.utils import timezone
@@ -10,16 +11,18 @@ from ..signals import track_point_added
 class TrackPointTests(TestCase):
     def test_pricing_information_is_added_to_product(self):
         product = ProductFactory()
-        beginning = timezone.now() - dt.timedelta(days=7)
-        for x in range(0, 10):
+        prices = list(range(1000, 1090, 10))
+        beginning = timezone.now() - dt.timedelta(days=len(prices))
+        shuffle(prices)
+        for idx, x in enumerate(prices):
             point = TrackPointFactory(
                 product=product,
-                timestamp=beginning + dt.timedelta(days=x),
-                price=1000 + 10 * x,
+                timestamp=beginning + dt.timedelta(days=idx),
+                price=x,
             )
             track_point_added.send(sender=self, point=point)
 
-        self.assertEqual(product.price_base, 1090)
+        self.assertEqual(product.price_base, 1080)
         self.assertEqual(product.min_price, 1000)
         self.assertEqual(product.last_price, point.price)
         self.assertEqual(product.price_drop_day, 10)
