@@ -11,7 +11,12 @@ track_point_added = Signal(providing_args=['product'])
 # WISHLIST make this async so it doesn't block views.ReceiverView
 # or make it a feature and use the it in the response as user feedback
 def update_product_pricing(sender, product, **kwargs):
+    """
+    Denormalize `Product` pricing when a new `TrackPoint` is added
+    """
+    # TODO pass the TrackPoint as an arg instead of querying for it
     latest_track = product.prices.latest('timestamp')
+    assert latest_track.product == product
     max_week = Max('price', filter=Q(timestamp__gte=now() - dt.timedelta(days=7, minutes=1)))
     max_day = Max('price', filter=Q(timestamp__gte=now() - dt.timedelta(days=1, minutes=1)))
     out = product.prices.aggregate(
