@@ -24,6 +24,9 @@ class Product(models.Model):
     url = models.URLField(blank=True, null=True)
     last_price = models.DecimalField(max_digits=8, decimal_places=2, null=True)
     last_price_check = models.DateTimeField(null=True)
+    min_price = models.DecimalField(
+        max_digits=8, decimal_places=2, null=True,
+        help_text='Cheapest price seen')
     price_base = models.DecimalField(
         max_digits=8, decimal_places=2, null=True,
         help_text='Highest price seen, typically the MSRP')
