@@ -50,7 +50,7 @@ class ReceiverView(View):
             ) for x in data['data']
         ]
         for point in TrackPoint.objects.bulk_create(points):
-            track_point_added.send(sender=self, product=point.product)
+            track_point_added.send(sender=self, point=point)
 
         return HttpResponse(status=204)
 
