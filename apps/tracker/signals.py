@@ -30,7 +30,9 @@ def update_product_pricing(sender, point, **kwargs):
     product.last_price_check = point.timestamp
     product.price_drop_day = out['day_diff']
     product.price_drop_week = out['week_diff']
-    product.price_base = max(product.last_price, out['max_week'])
+    price_bases = [product.last_price, out['max_week']]
+    price_bases = [x for x in price_bases if x]
+    product.price_base = max(price_bases)
     product.save()
 
 
