@@ -21,7 +21,7 @@ class TrackPointTests(TestCase):
     def test_pricing_information_is_added_to_product(self):
         product = ProductFactory()
         prices = list(range(1000, 1070, 10))
-        beginning = timezone.now() - dt.timedelta(days=len(prices))
+        beginning = timezone.now() - dt.timedelta(days=len(prices) - 1)
         shuffle(prices)
         for idx, x in enumerate(prices):
             point = TrackPointFactory(
@@ -31,8 +31,8 @@ class TrackPointTests(TestCase):
             )
             track_point_added.send(sender=self, point=point)
 
-        self.assertEqual(product.price_base, 1080)
+        self.assertEqual(product.price_base, 1060)
         self.assertEqual(product.min_price, 1000)
         self.assertEqual(product.last_price, point.price)
-        self.assertEqual(product.price_drop_day, 10)
-        self.assertEqual(product.price_drop_week, 70)
+        self.assertEqual(product.price_drop_day, max(0, prices[-2] - prices[-1]))
+        self.assertEqual(product.price_drop_week, max(0, 1060 - prices[-1]))
