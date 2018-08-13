@@ -14,6 +14,7 @@ def update_product_pricing(sender, product, **kwargs):
     max_week = Max('price', filter=Q(timestamp__gte=now() - dt.timedelta(days=7, minutes=1)))
     max_day = Max('price', filter=Q(timestamp__gte=now() - dt.timedelta(days=1, minutes=1)))
     out = product.prices.aggregate(
+        max_week=max_week,
         week_diff=max_week - latest_track.price,
         day_diff=max_day - latest_track.price,
     )
@@ -21,6 +22,7 @@ def update_product_pricing(sender, product, **kwargs):
     product.last_price_check = latest_track.timestamp
     product.price_drop_day = out['day_diff']
     product.price_drop_week = out['week_diff']
+    product.price_base = max(product.last_price, out['max_week'])
     product.save()
 
 
