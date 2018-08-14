@@ -24,8 +24,18 @@ class Product(models.Model):
     url = models.URLField(blank=True, null=True)
     last_price = models.DecimalField(max_digits=8, decimal_places=2, null=True)
     last_price_check = models.DateTimeField(null=True)
-    price_drop_day = models.DecimalField(max_digits=8, decimal_places=2, null=True)
-    price_drop_week = models.DecimalField(max_digits=8, decimal_places=2, null=True)
+    min_price = models.DecimalField(
+        max_digits=8, decimal_places=2, null=True,
+        help_text='Cheapest price seen')
+    price_base = models.DecimalField(
+        max_digits=8, decimal_places=2, null=True,
+        help_text='Highest price seen, typically the MSRP')
+    price_drop_short = models.DecimalField(
+        max_digits=8, decimal_places=2, null=True,
+        help_text='The price drop over the short period, usually a day')
+    price_drop_long = models.DecimalField(
+        max_digits=8, decimal_places=2, null=True,
+        help_text='The price drop over a long period, usually a week')
 
     class Meta:
         unique_together = ('property', 'identifier')

@@ -35,7 +35,7 @@ class SearchList(ListView):
         if query:
             return qs.filter(name__icontains=query)
 
-        return qs.order_by('price_drop_week')
+        return qs.order_by('price_drop_long')
 
 
 class WishlistDetail(ListView):

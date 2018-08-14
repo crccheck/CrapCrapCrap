@@ -49,9 +49,8 @@ class ReceiverView(View):
                 price=x['price'],
             ) for x in data['data']
         ]
-        TrackPoint.objects.bulk_create(points)
-        for product in product_map.values():
-            track_point_added.send(sender=self, product=product)
+        for point in TrackPoint.objects.bulk_create(points):
+            track_point_added.send(sender=self, point=point)
 
         return HttpResponse(status=204)
 

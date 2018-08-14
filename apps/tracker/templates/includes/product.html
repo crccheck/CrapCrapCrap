@@ -3,8 +3,8 @@
     {{ product }}
   </a>
   {% if product.last_price %}<span class="price">${{ product.last_price }}</span>{% endif %}
-  {% if product.price_drop_day %}1d{{ product.price_drop_day }}{% endif %}
-  {% if product.price_drop_week %}7d{{ product.price_drop_week }}{% endif %}
+  {% if product.price_drop_short %}1d{{ product.price_drop_short }}{% endif %}
+  {% if product.price_drop_long %}7d{{ product.price_drop_long }}{% endif %}
   <a href="{% url 'wishlist-toggle' %}"
      class="product--ui-wishlist wishlist-loading"
      title="Click to toggle wishlist">❤️</a>
