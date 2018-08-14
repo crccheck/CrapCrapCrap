@@ -17,7 +17,7 @@ class TrackPointInline(admin.TabularInline):
 
 @admin.register(models.Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'property', 'last_price', 'price_drop_day', 'price_drop_week')
+    list_display = ('name', 'property', 'last_price', 'price_drop_short', 'price_drop_long')
     search_fields = ('name',)
     ordering = ('name',)
     readonly_fields = ('property', 'identifier', 'url')

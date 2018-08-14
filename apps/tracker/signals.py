@@ -43,10 +43,10 @@ def update_product_pricing(sender, point: TrackPoint, **kwargs):
     product.last_price_check = point.timestamp
 
     if day_prices:
-        product.price_drop_day = max(day_prices) - point.price
+        product.price_drop_short = max(day_prices) - point.price
     else:
-        product.price_drop_day = 0
-    product.price_drop_week = max(week_prices) - point.price
+        product.price_drop_short = 0
+    product.price_drop_long = max(week_prices) - point.price
 
     price_bases = [product.last_price] + week_prices
     price_bases = [x for x in price_bases if x]
