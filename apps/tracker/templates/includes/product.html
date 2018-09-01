@@ -1,5 +1,5 @@
 <div class="product" data-id="{{ product.key }}">
-  <a href="{{ product.get_absolute_url }}" rel="noreferrer">
+  <a href="{{ product.get_absolute_url }}">
     {{ product }}
   </a>
   {% if product.last_price %}<span class="price">${{ product.last_price }}</span>{% endif %}
