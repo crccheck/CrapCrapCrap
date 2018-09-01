@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}{{ product }}{% endblock %}
+
+{% block body %}
+  <h1><a href="{{ product.url }}" target="_blank" rel="noreferrer noopener">{{ product }}</a></h1>
+  <h2>Sold by <a href="{{ product.property.url }}" target="_blank" rel="noreferrer noopener">{{ product.property }}</a></h2>
+  <dl>
+    <dt>Current price</dt>
+    <dd>${{ product.last_price }}</dd>
+    <dt>Lowest price seen</dt>
+    <dd>${{ product.min_price }}</dd>
+    <dt>Original price</dt>
+    <dd>${{ product.price_base }}</dt>
+  </dl>
+  <table>
+    {% for point in product.prices.all %}
+      <tr>
+        <td>${{ point.price }}</td>
+        <td>{{ point.timestamp }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

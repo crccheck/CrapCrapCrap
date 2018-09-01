@@ -4,7 +4,7 @@ import re
 from urllib.parse import urlparse
 
 from django.views import View
-from django.views.generic import TemplateView
+from django.views.generic import DetailView, TemplateView
 from django.http import HttpResponse
 
 from .models import Property, Product, TrackPoint
@@ -64,3 +64,10 @@ class HomeView(TemplateView):
             Product.objects.filter(last_price_check__isnull=False)
             .order_by('-last_price_check')[:20])
         return context
+
+
+class ProductDetail(DetailView):
+    model = Product
+
+    def get_queryset(self):
+        return super().get_queryset().select_related('property')
