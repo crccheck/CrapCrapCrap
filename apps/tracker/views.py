@@ -68,3 +68,6 @@ class HomeView(TemplateView):
 
 class ProductDetail(DetailView):
     model = Product
+
+    def get_queryset(self):
+        return super().get_queryset().select_related('property')
