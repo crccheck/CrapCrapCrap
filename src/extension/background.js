@@ -1,25 +1,12 @@
-console.log('background')
-console.log('browser', browser)
-console.log('browser.tabs', browser.tabs)
-console.log('browser.pageAction', browser.pageAction)
-console.log('browser.runtime', browser.runtime)
-function handleInstalled (details) {
-  console.log('handleInstalled', details)
-  // browser.tabs.create({
-  //   url: "http://chilloutandwatchsomecatgifs.com/"
-  // });
-}
-
-browser.runtime.onInstalled.addListener(handleInstalled)
+console.log('background script running --------------------------------------')
 browser.pageAction.onClicked.addListener((tab) => {
-  console.log('pageAction.onClicked')
-  // browser.pageAction.setIcon({
-  //   tabId: tab.id, path: "icons/icon-48.png"
-  // });
+  console.log('pageAction.onClicked TODO')
 })
-// browser.tabs.getCurrent()
 
-browser.runtime.onMessage.addListener((msg) => {
+browser.runtime.onMessage.addListener(async (msg) => {
+  const [tab] = await browser.tabs.query({currentWindow: true, active: true})
+  browser.pageAction.setIcon({
+    tabId: tab.id, path: 'icons/ccc_loaded.svg',
+  })
   console.log('onMessge', msg)
-  browser.tabs.query({currentWindow: true, active: true}).then((x) => console.log('query', x))
 })
