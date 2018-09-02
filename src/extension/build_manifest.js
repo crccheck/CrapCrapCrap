@@ -7,5 +7,6 @@ if (process.env.NODE_ENV === 'production') {
 } else {
   manifest.permissions = ['http://localhost/*', 'activeTab']
 }
+manifest.page_action.show_matches = manifest.content_scripts[0].matches
 
 console.log(JSON.stringify(manifest, null, 2))

@@ -24,6 +24,6 @@
     "browser_style": true,
     "default_icon": "icons/ccc_loading.svg",
     "default_title": "Whereami?",
-    "show_matches": ["https://*/*"]
+    "show_matches": "SET IN build_manifest.js"
   }
 }

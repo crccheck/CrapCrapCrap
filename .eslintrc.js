@@ -5,6 +5,9 @@ module.exports = {
     jquery: true,
     mocha: true,
   },
+  globals: {
+    browser: true,
+  },
   rules: {
     // Lets you manipulate lines easier and have cleaner diffs
     'comma-dangle': ['error', 'always-multiline'],
