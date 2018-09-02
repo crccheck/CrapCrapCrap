@@ -1,6 +1,6 @@
-const { debug, sendUpdate } = require('./utils')
-const { bigbadtoystore } = require('./bbts')
 const { amazon } = require('./amazon')
+const { bigbadtoystore } = require('./bbts')
+const { debug, sendUpdate } = require('./utils')
 
 function main () {
   debug('started')
@@ -17,9 +17,8 @@ function main () {
     sendUpdate(data)
   }
 }
+// setTimeout(main, 200 + Math.random() * 2000)
 console.log('browser', browser)
-console.log('tabs', browser.tabs)
-setTimeout(main, 200 + Math.random() * 2000)
-browser.pageAction.setIcon(
-)
-console.log('hi')
+console.log('browser.tabs', browser.tabs)
+browser.tabs.query({active: true, currentWindow: true})
+  .then(console.log)
