@@ -4,6 +4,7 @@ browser.pageAction.onClicked.addListener((tab) => {
 })
 
 browser.runtime.onMessage.addListener(async (msg) => {
+  // FIXME if another tab loads, it will use the current tab
   const [tab] = await browser.tabs.query({currentWindow: true, active: true})
   const { type, payload } = msg
   switch (type) {

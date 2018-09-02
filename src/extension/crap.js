@@ -7,23 +7,28 @@ async function main () {
   let data
   switch (window.location.host) {
     case 'www.amazon.com':
-      data = amazon()
+      try {
+        data = amazon()
+      } catch (err) {
+        console.error(err)
+        data = []
+      }
       break
     case 'www.bigbadtoystore.com':
       data = bigbadtoystore()
       break
   }
-  if (data && data.length) {
-    try {
+  try {
+    if (data && data.length) {
       await sendUpdate(data)
-    } catch (err) {
-      debug(err)
-    } finally {
-      browser.runtime.sendMessage({
-        type: 'data',
-        payload: data,
-      })
     }
+  } catch (err) {
+    debug(err)
+  } finally {
+    browser.runtime.sendMessage({
+      type: 'data',
+      payload: data,
+    })
   }
 }
 setTimeout(main, 200 + Math.random() * 2000)
