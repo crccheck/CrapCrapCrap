@@ -51,9 +51,20 @@ build: ## Do a production build of static assets
 # BROWSER EXTENSION
 
 ext/dev: ## Start dev process for browser extension
-	node src/extension/build_manifest.js > browser_ext/manifest.json
-	cd browser_ext && web-ext run --url https://www.bigbadtoystore.com/Search?HideSoldOut=true&InventoryStatus=sa%2Ci%2Cp&SortOrder=Bestselling
+	# node src/extension/build_manifest.js > browser_ext/manifest.json
+	# cd browser_ext && web-ext run --url https://www.bigbadtoystore.com/Search?HideSoldOut=true&InventoryStatus=sa%2Ci%2Cp&SortOrder=Bestselling
+	# node_modules/.bin/watchify -t [ envify purge --NODE_ENV development ] src/extension/crap.js -o browser_ext/crap.js
+	${MAKE} -j3 ext/dev/browser_ext/background.js ext/dev/browser_ext/crap.js ext/dev/browser_ext/manifest.json
+
+ext/dev/browser_ext/background.js:
+	node_modules/.bin/watchify -t [ envify purge --NODE_ENV development ] src/extension/background.js -o browser_ext/background.js
+
+ext/dev/browser_ext/crap.js:
 	node_modules/.bin/watchify -t [ envify purge --NODE_ENV development ] src/extension/crap.js -o browser_ext/crap.js
+
+ext/dev/browser_ext/manifest.json:
+	nodemon -w "src/extension/manifest.json" -x "node src/extension/build_manifest.js > browser_ext/manifest.json"
+
 
 .PHONY: browser_ext/manifest.json
 browser_ext/manifest.json:

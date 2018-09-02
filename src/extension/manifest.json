@@ -6,6 +6,9 @@
   "permissions": [
     "SET IN build_manifest.js"
   ],
+  "background": {
+    "scripts": ["background.js"]
+  },
   "content_scripts": [
     {
       "matches": [
