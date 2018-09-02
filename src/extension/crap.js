@@ -17,8 +17,8 @@ function main () {
     sendUpdate(data)
   }
 }
-console.log('tabs', browser)
-console.log('tabs', browser.tabs.getCurrent())
+console.log('browser', browser)
+console.log('tabs', browser.tabs)
 setTimeout(main, 200 + Math.random() * 2000)
 browser.pageAction.setIcon(
 )

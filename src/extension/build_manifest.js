@@ -3,9 +3,9 @@ const manifest = require('./manifest.json')
 
 manifest.version = pkg.version
 if (process.env.NODE_ENV === 'production') {
-  manifest.permissions = ['https://tracker.craptobuy.com/*']
+  manifest.permissions = ['https://tracker.craptobuy.com/*', 'tabs']
 } else {
-  manifest.permissions = ['http://localhost/*']
+  manifest.permissions = ['http://localhost/*', 'tabs']
 }
 
 console.log(JSON.stringify(manifest, null, 2))

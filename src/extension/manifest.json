@@ -4,9 +4,7 @@
   "version": "0.0.0",
   "description": "Track prices on sites you care about",
   "permissions": [
-    "http://localhost/*",
-    "https://tracker.craptobuy.com/*",
-    "tabs"
+    "SET IN build_manifest.js"
   ],
   "content_scripts": [
     {
