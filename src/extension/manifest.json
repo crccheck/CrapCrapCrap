@@ -21,9 +21,9 @@
   "page_action": {
     "browser_style": true,
     "default_icon": {
-      "128": "icons/poopstar.png"
+      "32": "icons/temp.png"
     },
     "default_title": "Whereami?",
-    "show_matches": ["*://*"]
+    "show_matches": ["https://*/*"]
   }
 }
