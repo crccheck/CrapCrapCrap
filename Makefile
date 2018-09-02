@@ -51,6 +51,7 @@ build: ## Do a production build of static assets
 # BROWSER EXTENSION
 
 ext/dev: ## Start dev process for browser extension
+	node src/extension/build_manifest.js > browser_ext/manifest.json
 	cd browser_ext && web-ext run --url https://www.bigbadtoystore.com/Search?HideSoldOut=true&InventoryStatus=sa%2Ci%2Cp&SortOrder=Bestselling
 	${MAKE} -j3 ext/dev/browser_ext/background.js ext/dev/browser_ext/crap.js ext/dev/browser_ext/manifest.json
 
