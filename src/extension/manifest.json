@@ -23,7 +23,7 @@
   "page_action": {
     "browser_style": true,
     "default_icon": "icons/ccc_loading.svg",
-    "default_title": "Whereami?",
+    "default_title": "CrapCrapCrap",
     "default_popup": "popup/infobox.html",
     "show_matches": "SET IN build_manifest.js"
   }
