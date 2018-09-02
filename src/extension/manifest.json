@@ -5,7 +5,8 @@
   "description": "Track prices on sites you care about",
   "permissions": [
     "http://localhost/*",
-    "https://tracker.craptobuy.com/*"
+    "https://tracker.craptobuy.com/*",
+    "tabs"
   ],
   "content_scripts": [
     {
@@ -20,9 +21,7 @@
   ],
   "page_action": {
     "browser_style": true,
-    "default_icon": {
-      "32": "icons/temp.png"
-    },
+    "default_icon": "icons/ccc_loading.svg",
     "default_title": "Whereami?",
     "show_matches": ["https://*/*"]
   }
