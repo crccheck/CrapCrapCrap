@@ -14,12 +14,11 @@ function main () {
       break
   }
   if (data && data.length) {
-    sendUpdate(data)
     browser.runtime.sendMessage({
-      data,
+      type: 'data',
+      payload: data,
     })
-      .then(console.log)
-      .catch(console.error)
+    sendUpdate(data)
   }
 }
 setTimeout(main, 200 + Math.random() * 2000)
