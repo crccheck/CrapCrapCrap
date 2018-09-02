@@ -4,9 +4,11 @@
   "version": "0.0.0",
   "description": "Track prices on sites you care about",
   "permissions": [
-    "http://localhost/*",
-    "https://tracker.craptobuy.com/*"
+    "SET IN build_manifest.js"
   ],
+  "background": {
+    "scripts": ["background.js"]
+  },
   "content_scripts": [
     {
       "matches": [
@@ -17,5 +19,11 @@
       ],
       "js": ["crap.js"]
     }
-  ]
+  ],
+  "page_action": {
+    "browser_style": true,
+    "default_icon": "icons/ccc_loading.svg",
+    "default_title": "Whereami?",
+    "show_matches": "SET IN build_manifest.js"
+  }
 }
