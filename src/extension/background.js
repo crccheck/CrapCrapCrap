@@ -5,8 +5,13 @@ browser.pageAction.onClicked.addListener((tab) => {
 
 browser.runtime.onMessage.addListener(async (msg) => {
   const [tab] = await browser.tabs.query({currentWindow: true, active: true})
-  browser.pageAction.setIcon({
-    tabId: tab.id, path: 'icons/ccc_loaded.svg',
-  })
-  console.log('onMessge', msg)
+  const { type, payload } = msg
+  switch (type) {
+    case 'data':
+      const path = payload.length ? 'icons/ccc_loaded.svg' : 'icons/ccc_error.svg'
+      browser.pageAction.setIcon({ tabId: tab.id, path })
+      break
+    default:
+      console.log('Unknown message type: %s', type)
+  }
 })
