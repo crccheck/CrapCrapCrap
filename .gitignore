@@ -4,6 +4,8 @@ package-lock.json
 
 # Build artifacts
 browser_ext/*
+!browser_ext/icons
+!browser_ext/popup
 apps/tracker/static/app.js
 
 # Dev
