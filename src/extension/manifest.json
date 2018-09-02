@@ -17,5 +17,13 @@
       ],
       "js": ["crap.js"]
     }
-  ]
+  ],
+  "page_action": {
+    "browser_style": true,
+    "default_icon": {
+      "128": "icons/poopstar.png"
+    },
+    "default_title": "Whereami?",
+    "show_matches": ["*://*"]
+  }
 }

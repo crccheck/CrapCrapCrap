@@ -55,9 +55,13 @@ ext/dev: ## Start dev process for browser extension
 	cd browser_ext && web-ext run --url https://www.bigbadtoystore.com/Search?HideSoldOut=true&InventoryStatus=sa%2Ci%2Cp&SortOrder=Bestselling
 	node_modules/.bin/watchify -t [ envify purge --NODE_ENV development ] src/extension/crap.js -o browser_ext/crap.js
 
-ext/build: ## Build browser extension artifact
-	node_modules/.bin/browserify -t [ envify purge --NODE_ENV production ] src/extension/crap.js -o browser_ext/crap.js
+.PHONY: browser_ext/manifest.json
+browser_ext/manifest.json:
 	NODE_ENV=production node src/extension/build_manifest.js > browser_ext/manifest.json
+
+ext/build: ## Build browser extension artifact
+ext/build: browser_ext/manifest.json
+	node_modules/.bin/browserify -t [ envify purge --NODE_ENV production ] src/extension/crap.js -o browser_ext/crap.js
 	cd browser_ext && web-ext build
 	@echo Submit it at https://addons.mozilla.org/en-US/developers/addon/submit/distribution
 
