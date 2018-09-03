@@ -23,21 +23,6 @@ class Profile(TemplateView):
     template_name = 'profile.html'
 
 
-class SearchList(ListView):
-    context_object_name = 'products'
-    model = Product
-    paginate_by = 100
-    template_name = 'search.html'
-
-    def get_queryset(self):
-        qs = super().get_queryset()
-        query = self.request.GET.get('q')
-        if query:
-            return qs.filter(name__icontains=query)
-
-        return qs.order_by('price_drop_long')
-
-
 class WishlistDetail(ListView):
     model = ListItem
     paginate_by = 100

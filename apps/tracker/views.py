@@ -4,7 +4,7 @@ import re
 from urllib.parse import urlparse
 
 from django.views import View
-from django.views.generic import DetailView, TemplateView
+from django.views.generic import DetailView, ListView, TemplateView
 from django.http import HttpResponse, JsonResponse
 
 from .models import Property, Product, TrackPoint
@@ -69,6 +69,21 @@ class HomeView(TemplateView):
             Product.objects.filter(last_price_check__isnull=False)
             .order_by('-last_price_check')[:20])
         return context
+
+
+class SearchList(ListView):
+    context_object_name = 'products'
+    model = Product
+    paginate_by = 100
+    template_name = 'search.html'
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        query = self.request.GET.get('q')
+        if query:
+            return qs.filter(name__icontains=query)
+
+        return qs.order_by('price_drop_long')
 
 
 class ProductDetail(DetailView):
