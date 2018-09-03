@@ -52,11 +52,11 @@ class ReceiverView(View):
         for point in TrackPoint.objects.bulk_create(points):
             track_point_added.send(sender=self, point=point)
 
-        ret = {}
-        ret['product'] = [{
-            'pk': x.product.get_absolute_url(),
-            # TODO indicator that product is on sale
-        } for x in points]
+        pks = ','.join([str(x.product.pk) for x in points])
+        ret = {
+            'search_url': f'{request.scheme}://{request.META["SERVER_NAME"]}/search?products={pks}',
+            'deal_found': False,  # TODO
+        }
         return JsonResponse(data=ret, status=200)
 
 
