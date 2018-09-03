@@ -5,7 +5,7 @@ from urllib.parse import urlparse
 
 from django.views import View
 from django.views.generic import DetailView, TemplateView
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 
 from .models import Property, Product, TrackPoint
 from .signals import track_point_added
@@ -52,7 +52,7 @@ class ReceiverView(View):
         for point in TrackPoint.objects.bulk_create(points):
             track_point_added.send(sender=self, point=point)
 
-        return HttpResponse(status=204)
+        return JsonResponse(data={}, status=200)
 
 
 class HomeView(TemplateView):
