@@ -1,7 +1,8 @@
 console.log('background script running --------------------------------------')
-browser.pageAction.onClicked.addListener((tab) => {
-  console.log('pageAction.onClicked TODO')
-})
+
+window.store = {
+  test: 'test',
+}
 
 browser.runtime.onMessage.addListener(async (msg) => {
   // FIXME if another tab loads, it will use the current tab
