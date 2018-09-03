@@ -52,7 +52,12 @@ class ReceiverView(View):
         for point in TrackPoint.objects.bulk_create(points):
             track_point_added.send(sender=self, point=point)
 
-        return JsonResponse(data={}, status=200)
+        ret = {}
+        ret['product'] = [{
+            'pk': x.product.get_absolute_url(),
+            # TODO indicator that product is on sale
+        } for x in points]
+        return JsonResponse(data=ret, status=200)
 
 
 class HomeView(TemplateView):
