@@ -54,7 +54,7 @@ class ReceiverView(View):
 
         pks = ','.join([str(x.product.pk) for x in points])
         ret = {
-            'search_url': f'{request.scheme}://{request.META["SERVER_NAME"]}/search?products={pks}',
+            'search_url': f'{request.scheme}://{request.META["HTTP_HOST"]}/search?products={pks}',
             'deal_found': False,  # TODO
         }
         return JsonResponse(data=ret, status=200)
@@ -82,6 +82,7 @@ class SearchList(ListView):
         query = self.request.GET.get('q')
         if query:
             return qs.filter(name__icontains=query)
+        # TODO handle no query case
 
         return qs.order_by('price_drop_long')
 

@@ -20,7 +20,8 @@ async function main () {
   }
   try {
     if (data && data.length) {
-      await sendUpdate(data)
+      const resp = await sendUpdate(data)
+      console.log(await resp.json())
     }
   } catch (err) {
     debug(err)
