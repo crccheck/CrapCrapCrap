@@ -78,13 +78,17 @@ class SearchList(ListView):
     template_name = 'search.html'
 
     def get_queryset(self):
-        qs = super().get_queryset()
+        qs = super().get_queryset().order_by('price_drop_long')
         query = self.request.GET.get('q')
         if query:
             return qs.filter(name__icontains=query)
-        # TODO handle no query case
+        products = self.request.GET.get('products')
+        if products:
+            products = map(int, products.split(','))
+            return qs.filter(pk__in=products)
 
-        return qs.order_by('price_drop_long')
+        # TODO handle no query case
+        return qs[:100]
 
 
 class ProductDetail(DetailView):
