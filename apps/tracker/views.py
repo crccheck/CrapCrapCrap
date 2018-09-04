@@ -84,8 +84,10 @@ class SearchList(ListView):
             return qs.filter(name__icontains=query)
         products = self.request.GET.get('products')
         if products:
-            products = map(int, products.split(','))
-            return qs.filter(pk__in=products)
+            product_pks = list(map(int, products.split(',')))
+            object_list = list(qs.filter(pk__in=product_pks))
+            object_list.sort(key=lambda x: product_pks.index(x.pk))
+            return object_list
 
         # TODO handle no query case
         return qs[:100]
