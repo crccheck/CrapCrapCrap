@@ -7,6 +7,7 @@ browser_ext/*
 !browser_ext/icons
 !browser_ext/popup
 apps/tracker/static/app.js
+apps/tracker/static/app.css
 
 # Dev
 *.dump
