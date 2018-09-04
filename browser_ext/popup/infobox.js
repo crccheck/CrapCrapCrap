@@ -4,8 +4,8 @@ browser.runtime.getBackgroundPage().then((bgWindow) => {
   const $productCount = document.getElementById('placeholder--product-count')
   $productCount.innerHTML = state.payload.length
 
-  const $share = document.getElementById('placeholder--share')
+  const $wish = document.getElementById('placeholder--wish')
   if (state.shareUrl) {
-    $share.href = state.shareUrl
+    $wish.href = state.shareUrl
   }
 })

@@ -4,14 +4,17 @@
 	<meta charset="UTF-8">
 	<title>Pop-up</title>
   <style>
+    html {
+      font-size: 11px;
+    }
     ul {
-      margin-top: 0;
-      margin-bottom: 2em;
+      margin-bottom: 1.5em;
+      margin-top: 1em;
       padding: 0;
     }
     li {
       list-style: none;
-      padding: 0.25em;
+      text-align: center;
     }
     a {
       text-decoration: none;
@@ -30,15 +33,22 @@
       padding: 0.25em;
       width: 100%;
     }
+    .wishlist-btn {
+      display: block;
+      font-size: 0.75em;
+      letter-spacing: 0.6px;
+      padding: 1em 2em;
+      text-transform: uppercase;
+    }
   </style>
 </head>
 <body>
   <ul>
     <li>
-      <span id="placeholder--product-count">0</span> products found
+      <span id="placeholder--product-count">0</span> products found!
     </li>
     <li>
-      <a id="placeholder--share" href="https://tracker.craptobuy.com/">Add to my wishlist</a>
+      <a id="placeholder--wish" href="https://tracker.craptobuy.com/" class="wishlist-btn">+ Add to wishlist</a>
     </li>
   </ul>
   <nav>
