@@ -1,9 +1,21 @@
 .ProductSlat {
   display: flex;
+  align-items: center;
 
-  .thumbnail {
+  > .thumbnail {
     background: #ebebeb;
+    flex: 0 0 auto;
     height: 100px;
     width: 100px;
+  }
+  > .info {
+    margin-left: 1em;
+    flex: 1 1 auto;
+  }
+  > .pricing {
+    flex: 0 0 auto;
+  }
+  > .actions {
+    flex: 0 0 auto;
   }
 }

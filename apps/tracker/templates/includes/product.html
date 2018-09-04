@@ -6,7 +6,8 @@
     </a>
     <a href="{{ product.url }}" target="_blank" rel="noreferrer noopener">
       ↗️
-    </a>
+    </a><br />
+    Sold by <a href="">{{ product.property }}</a>
   </div>
   <div class="pricing">
     {% if product.last_price %}<span class="price">${{ product.last_price }}</span>{% endif %}
