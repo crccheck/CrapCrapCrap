@@ -23,13 +23,29 @@
     font-size: 1.3rem;
   }
   > .actions {
+    border-left: 1px solid #e0e0e0;
     flex: 0 0 auto;
-    margin: 0 1em;
+    padding: 0 1em;
+    margin-left: 1em;
+    line-height: 100px;
+    height: 100px;
+  }
+  // overrides
+  p {
+    margin: 0;
   }
 }
-
+a.ProductSlat--ui-wishlist {
+  color: transparent;
+  text-shadow: 0 0 0 #aaa;
+}
+a.ProductSlat--ui-wishlist.active {
+  color: inherit;
+  text-shadow: none;
+}
 .ProductSlat--name {
   font-size: 1.3rem;
+  line-height: 1;
 }
 .ProductSlat--property {
   font-size: 0.9rem;

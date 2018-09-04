@@ -15,15 +15,15 @@ $.ajaxSetup({
 $.ajax('/api/list/', {
   success: (data) => {
     data.wishlist.forEach((id) => {
-      $(`.product[data-id=${id}] .product--ui-wishlist`)
+      $(`.ProductSlat[data-id=${id}] .ProductSlat--ui-wishlist`)
         .addClass('active')
     })
   },
 })
 
-$('.product').each(function (idx, el) {
+$('.ProductSlat').each(function (idx, el) {
   const $product = $(el)
-  $product.on('click', '.product--ui-wishlist', function (e, el) {
+  $product.on('click', '.ProductSlat--ui-wishlist', function (e, el) {
     e.preventDefault()
     const $el = $(this)
     const method = $el.hasClass('active') ? 'DELETE' : 'PUT'
@@ -35,7 +35,7 @@ $('.product').each(function (idx, el) {
       }),
       success: (data) => {
         Object.keys(data).forEach((id) => {
-          $(`.product[data-id=${id}] .product--ui-wishlist`)
+          $(`.ProductSlat[data-id=${id}] .ProductSlat--ui-wishlist`)
             .toggleClass('active', method === 'PUT')
         })
       },
