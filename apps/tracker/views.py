@@ -54,8 +54,8 @@ class ReceiverView(View):
         for point in TrackPoint.objects.bulk_create(points):
             track_point_added.send(sender=self, point=point)
 
-        pks = ','.join([str(x.product.pk) for x in points])
         crap_host = request.META.get("HTTP_HOST")
+        pks = ','.join([str(x.product.pk) for x in points])
         ret = {
             'search_url': f'{request.scheme}://{crap_host}/search?products={pks}',
             'deal_found': False,  # TODO
