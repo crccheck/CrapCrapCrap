@@ -20,7 +20,6 @@ browser.runtime.onMessage.addListener(async (msg) => {
     data: payload,
     v: 1,
   }
-  console.log('body', body, TRACK_URL)
   try {
     const resp = await fetch(TRACK_URL, {
       method: 'POST',
@@ -29,7 +28,8 @@ browser.runtime.onMessage.addListener(async (msg) => {
       },
       body: JSON.stringify(body),
     })
-    console.log('resp', await resp.json())
+    const respData = await resp.json()
+    window.state.shareUrl = respData.search_url
   } catch (err) {
     console.error(err)
   }
