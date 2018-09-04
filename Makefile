@@ -72,6 +72,7 @@ browser_ext/manifest.json: src/extension/manifest.json package.json
 ext/build: ## Build browser extension artifact
 	NODE_ENV=production ${MAKE} -s browser_ext/manifest.json
 	node_modules/.bin/browserify -t [ envify purge --NODE_ENV production ] src/extension/crap.js -o browser_ext/crap.js
+	node_modules/.bin/browserify -t [ envify purge --NODE_ENV production ] src/extension/background.js -o browser_ext/background.js
 	cd browser_ext && web-ext build
 	@echo Submit it at https://addons.mozilla.org/en-US/developers/addon/submit/distribution
 
