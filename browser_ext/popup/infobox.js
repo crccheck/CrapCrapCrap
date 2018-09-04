@@ -1,8 +1,11 @@
-console.log('popup hi -------------')
-
 browser.runtime.getBackgroundPage().then((bgWindow) => {
-  console.log('popup', bgWindow.store)
-  const productCount = document.getElementById('placeholder--product-count')
-  console.log(productCount, bgWindow.store.payload)
-  productCount.innerHTML = bgWindow.store.payload.length
+  const { state } = bgWindow
+  console.log('popup state:', state)
+  const $productCount = document.getElementById('placeholder--product-count')
+  $productCount.innerHTML = state.payload.length
+
+  const $share = document.getElementById('placeholder--share')
+  if (state.shareUrl) {
+    $share.href = state.shareUrl
+  }
 })

@@ -15,7 +15,7 @@ class ReceiverTests(TestCase):
             data=POINT_DATA,
         )
 
-        self.assertEqual(response.status_code, 204)
+        self.assertEqual(response.status_code, 200)
         property = Property.objects.get(url='www.bbts.local')
         product = Product.objects.get(property=property, identifier='77021')
         self.assertEqual(product.prices.count(), 1)
@@ -34,7 +34,7 @@ class ReceiverTests(TestCase):
             data=call_2,
         )
 
-        self.assertEqual(response.status_code, 204)
+        self.assertEqual(response.status_code, 200)
         self.assertEqual(Property.objects.count(), 1)
         property = Property.objects.get(url='www.bbts.local')
         self.assertTrue(property)
@@ -51,7 +51,7 @@ class ReceiverTests(TestCase):
             data=POINT_DATA,
         )
 
-        self.assertEqual(response.status_code, 204)
+        self.assertEqual(response.status_code, 200)
         property = Property.objects.get(url='www.bbts.local')
         product = Product.objects.get(property=property, identifier='77021')
         self.assertEqual(product.prices.count(), 2)
