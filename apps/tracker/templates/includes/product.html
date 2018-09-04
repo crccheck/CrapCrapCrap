@@ -1,14 +1,21 @@
-<div class="product" data-id="{{ product.key }}">
-  <a href="{{ product.get_absolute_url }}">
-    {{ product }}
-  </a>
-  <a href="{{ product.url }}" target="_blank" rel="noreferrer noopener">
-    ↗️
-  </a>
-  {% if product.last_price %}<span class="price">${{ product.last_price }}</span>{% endif %}
-  {% if product.price_drop_short %}1d{{ product.price_drop_short }}{% endif %}
-  {% if product.price_drop_long %}7d{{ product.price_drop_long }}{% endif %}
-  <a href="{% url 'wishlist-toggle' %}"
-     class="product--ui-wishlist wishlist-loading"
-     title="Click to toggle wishlist">❤️</a>
+<div class="ProductSlat" data-id="{{ product.key }}">
+  <div class="thumbnail">&nbsp;</div>
+  <div class="info">
+    <a href="{{ product.get_absolute_url }}">
+      {{ product }}
+    </a>
+    <a href="{{ product.url }}" target="_blank" rel="noreferrer noopener">
+      ↗️
+    </a>
+  </div>
+  <div class="pricing">
+    {% if product.last_price %}<span class="price">${{ product.last_price }}</span>{% endif %}
+    {% if product.price_drop_short %}1d{{ product.price_drop_short }}{% endif %}
+    {% if product.price_drop_long %}7d{{ product.price_drop_long }}{% endif %}
+  </div>
+  <div class="actions">
+    <a href="{% url 'wishlist-toggle' %}"
+       class="product--ui-wishlist wishlist-loading"
+       title="Click to toggle wishlist">❤️</a>
+  </div>
 </div>
