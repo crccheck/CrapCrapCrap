@@ -6,11 +6,9 @@
 {% block body %}
   <h2>My Wishlist/Watchlist</h2>
   {% if object_list %}
-    <ul>
-      {% for item in object_list %}
-        <li>{% include "includes/product.html" with product=item.product %}</li>
-      {% endfor %}
-    </ul>
+    {% for item in object_list %}
+      {% include "includes/product.html" with product=item.product %}
+    {% endfor %}
   {% else %}
     <p>No items yet</p>
   {% endif %}
