@@ -1,6 +1,12 @@
 .ProductSlat {
-  display: flex;
   align-items: center;
+  display: flex;
+  border: 1px solid #e0e0e0;
+  border-bottom: 0 none;
+
+  &:last-child {
+    border-bottom: 1px solid #e0e0e0;
+  }
 
   > .thumbnail {
     background: #ebebeb;
@@ -14,8 +20,17 @@
   }
   > .pricing {
     flex: 0 0 auto;
+    font-size: 1.3rem;
   }
   > .actions {
     flex: 0 0 auto;
+    margin: 0 1em;
   }
+}
+
+.ProductSlat--name {
+  font-size: 1.3rem;
+}
+.ProductSlat--property {
+  font-size: 0.9rem;
 }
