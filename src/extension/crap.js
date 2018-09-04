@@ -17,7 +17,6 @@ async function main () {
       break
   }
   browser.runtime.sendMessage({
-    type: 'data',
     payload: data,
     referrer: window.location.href,
   })

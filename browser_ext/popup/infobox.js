@@ -1,8 +1,8 @@
 console.log('popup hi -------------')
 
 browser.runtime.getBackgroundPage().then((bgWindow) => {
-  console.log('popup', bgWindow.store)
+  console.log('popup', bgWindow.state)
   const productCount = document.getElementById('placeholder--product-count')
-  console.log(productCount, bgWindow.store.payload)
-  productCount.innerHTML = bgWindow.store.payload.length
+  console.log(productCount, bgWindow.state.payload)
+  productCount.innerHTML = bgWindow.state.payload.length
 })
