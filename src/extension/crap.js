@@ -1,9 +1,7 @@
 const { amazon } = require('./amazon')
 const { bigbadtoystore } = require('./bbts')
-const { debug, sendUpdate } = require('./utils')
 
 async function main () {
-  debug('started')
   let data
   switch (window.location.host) {
     case 'www.amazon.com':
@@ -18,18 +16,10 @@ async function main () {
       data = bigbadtoystore()
       break
   }
-  try {
-    if (data && data.length) {
-      const resp = await sendUpdate(data)
-      console.log(await resp.json())
-    }
-  } catch (err) {
-    debug(err)
-  } finally {
-    browser.runtime.sendMessage({
-      type: 'data',
-      payload: data,
-    })
-  }
+  browser.runtime.sendMessage({
+    type: 'data',
+    payload: data,
+    referrer: window.location.href,
+  })
 }
 setTimeout(main, 200 + Math.random() * 2000)

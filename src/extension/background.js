@@ -1,3 +1,6 @@
+const DEBUG = process.env.NODE_ENV !== 'production'
+const TRACK_URL = DEBUG ? 'http://localhost:35272/receive/' : 'https://tracker.craptobuy.com/receive/'
+
 console.log('background script running --------------------------------------')
 
 window.store = {
@@ -13,6 +16,24 @@ browser.runtime.onMessage.addListener(async (msg) => {
     case 'data':
       const path = payload.length ? 'icons/ccc_loaded.svg' : 'icons/ccc_error.svg'
       browser.pageAction.setIcon({ tabId: tab.id, path })
+      const body = {
+        referrer: msg.referrer,
+        data: payload,
+        v: 1,
+      }
+      console.log('body', body, TRACK_URL)
+      try {
+        const resp = await fetch(TRACK_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json; charset=utf-8',
+          },
+          body: JSON.stringify(body),
+        })
+        console.log('resp', await resp.json())
+      } catch (err) {
+        console.error(err)
+      }
       break
     default:
       console.log('Unknown message type: %s', type)
