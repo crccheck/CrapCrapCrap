@@ -14,7 +14,12 @@
     </p>
   </div>
   <div class="pricing">
-    {% if product.last_price %}<span class="price">${{ product.last_price|intcomma }}</span>{% endif %}
+    <div class="ProductSlat--last-price">
+      {% if product.last_price %}<span class="price">${{ product.last_price|intcomma }}</span>{% endif %}
+    </div>
+    <div class="ProductSlat--base-price {% if product.last_price == product.price_base %}invisible{% endif %}">
+      {% if product.price_base %}<span class="price">${{ product.price_base|intcomma }}</span>{% endif %}
+    </div>
     {% if product.price_drop_short %}1d{{ product.price_drop_short }}{% endif %}
     {% if product.price_drop_long %}7d{{ product.price_drop_long }}{% endif %}
   </div>

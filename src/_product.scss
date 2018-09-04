@@ -20,7 +20,7 @@
   }
   > .pricing {
     flex: 0 0 auto;
-    font-size: 1.25rem;
+    text-align: right;
   }
   > .actions {
     border-left: 1px solid #e0e0e0;
@@ -31,11 +31,11 @@
     height: 100px;
   }
 }
-.ProductSlat--name {
+.ProductSlat--name, .ProductSlat--last-price {
   font-size: 1.25rem;
   line-height: 1;
 }
-.ProductSlat--property {
+.ProductSlat--property, .ProductSlat--base-price {
   font-size: 0.85rem;
   margin-top: 0.2em;
   margin-bottom: 0;
@@ -43,6 +43,9 @@
   a {
     font-weight: bold;
   }
+}
+.ProductSlat--base-price {
+  text-decoration: line-through;
 }
 .ProductSlat--ui-wishlist {
   color: #ebebeb;
