@@ -3,6 +3,7 @@ browser.runtime.getBackgroundPage().then((bgWindow) => {
   console.log('popup state:', state)
   const $productCount = document.getElementById('placeholder--product-count')
   const plural = state.payload.length === 1 ? '' : 's'
+  // FIXME change text instad of html
   $productCount.innerHTML = `${state.payload.length} product${plural} found!`
 
   const $wish = document.getElementById('placeholder--wish')

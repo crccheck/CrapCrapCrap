@@ -64,7 +64,7 @@ ext/dev/browser_ext/crap.js:
 ext/dev/browser_ext/manifest.json:
 	nodemon -w "src/extension/manifest.json" -x "make browser_ext/manifest.json"
 
-browser_ext/manifest.json: src/extension/manifest.json
+browser_ext/manifest.json: src/extension/manifest.json package.json
 	node src/extension/build_manifest.js > browser_ext/manifest.json
 
 ext/build: ## Build browser extension artifact
