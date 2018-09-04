@@ -4,16 +4,20 @@
 	<meta charset="UTF-8">
 	<title>Pop-up</title>
   <style>
+    html {
+      font-size: 11px;
+    }
     ul {
-      margin-top: 0;
-      margin-bottom: 2em;
+      margin-bottom: 1.5em;
+      margin-top: 1em;
       padding: 0;
     }
     li {
       list-style: none;
-      padding: 0.25em;
+      text-align: center;
     }
     a {
+      color: #4a90e2;
       text-decoration: none;
     }
     nav {
@@ -23,22 +27,29 @@
       width: 100%;
     }
     nav a {
-      background-color: skyblue;
+      background-color: #4a90e2;
       color: white;
       display: block;
       text-align: center;
       padding: 0.25em;
       width: 100%;
     }
+    .wishlist-btn {
+      display: block;
+      font-size: 0.75em;
+      letter-spacing: 0.6px;
+      padding: 1em 2em;
+      text-transform: uppercase;
+    }
   </style>
 </head>
 <body>
   <ul>
     <li>
-      <span id="placeholder--product-count">0</span> products found
+      <span id="placeholder--product-count">0 products found!</span>
     </li>
     <li>
-      <a id="placeholder--share" href="https://tracker.craptobuy.com/">Add to my wishlist</a>
+      <a id="placeholder--wish" href="https://tracker.craptobuy.com/" class="wishlist-btn">+ Add to wishlist</a>
     </li>
   </ul>
   <nav>
