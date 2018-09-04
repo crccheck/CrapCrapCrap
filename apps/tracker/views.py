@@ -70,6 +70,7 @@ class HomeView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['products'] = (
             Product.objects.filter(last_price_check__isnull=False)
+            .select_related('property')
             .order_by('-last_price_check')[:20])
         return context
 
@@ -81,7 +82,7 @@ class SearchList(ListView):
     template_name = 'search.html'
 
     def get_queryset(self) -> Union[QuerySet, List]:
-        qs = super().get_queryset().order_by('price_drop_long')
+        qs = super().get_queryset().order_by('price_drop_long').select_related('property')
         query = self.request.GET.get('q')
         if query:
             return qs.filter(name__icontains=query)

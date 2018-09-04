@@ -1,8 +1,0 @@
-a.product--ui-wishlist {
-  color: transparent;
-  text-shadow: 0 0 0 #aaa;
-}
-a.product--ui-wishlist.active {
-  color: inherit;
-  text-shadow: none;
-}

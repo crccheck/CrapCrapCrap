@@ -4,9 +4,7 @@
 
 {% block body %}
   <h2>Latest products</h2>
-  <ul>
-    {% for product in products %}
-      <li>{% include "includes/product.html" %}</li>
-    {% endfor %}
-  </ul>
+  {% for product in products %}
+    {% include "includes/product.html" %}</li>
+  {% endfor %}
 {% endblock %}

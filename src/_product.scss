@@ -1,0 +1,60 @@
+.ProductSlat {
+  align-items: center;
+  display: flex;
+  border: 1px solid #e0e0e0;
+  border-bottom: 0 none;
+
+  &:last-child {
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  > .thumbnail {
+    background: #ebebeb;
+    flex: 0 0 auto;
+    height: 100px;
+    width: 100px;
+  }
+  > .info {
+    margin-left: 1em;
+    flex: 1 1 auto;
+  }
+  > .pricing {
+    flex: 0 0 auto;
+    text-align: right;
+  }
+  > .actions {
+    border-left: 1px solid #e0e0e0;
+    flex: 0 0 auto;
+    padding: 0 1em;
+    margin-left: 1em;
+    line-height: 100px;
+    height: 100px;
+  }
+}
+.ProductSlat--name, .ProductSlat--last-price {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+.ProductSlat--property, .ProductSlat--base-price {
+  font-size: 0.85rem;
+  margin-top: 0.2em;
+  margin-bottom: 0;
+
+  a {
+    font-weight: bold;
+  }
+}
+.ProductSlat--base-price {
+  text-decoration: line-through;
+}
+.ProductSlat--ui-wishlist {
+  color: #ebebeb;
+  font-size: 2.8em;
+  transition: color 100ms;
+  &:hover {
+    text-decoration: none;
+  }
+}
+.ProductSlat--ui-wishlist.active {
+  color: #eebb28;
+}

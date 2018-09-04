@@ -30,12 +30,13 @@ tdd: ## Run test watcher
 	nodemon -e py -x ./manage.py test --failfast --keepdb
 
 dev: ## Start dev server
-	@${MAKE} -s -j3 _dev
-
-_dev: dev/js dev/browser-sync dev/django
+	@${MAKE} -s -j dev/js dev/css dev/browser-sync dev/django
 
 dev/django:
 	python manage.py runserver 0.0.0.0:35272
+
+dev/css:
+	node_modules/.bin/sass src/app.scss:apps/tracker/static/app.css --embed-source-map --watch
 
 dev/js:
 	node_modules/.bin/watchify src/app.js --debug -o apps/tracker/static/app.js
@@ -47,6 +48,7 @@ dev/browser-sync:
 
 build: ## Do a production build of static assets
 	node_modules/.bin/browserify src/app.js -o apps/tracker/static/app.js
+	node_modules/.bin/sass src/app.scss:apps/tracker/static/app.css --no-source-map
 
 # BROWSER EXTENSION
 
