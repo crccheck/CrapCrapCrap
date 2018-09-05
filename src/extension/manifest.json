@@ -7,7 +7,7 @@
     "SET IN build_manifest.js"
   ],
   "background": {
-    "scripts": ["background.js"],
+    "scripts": ["browser-polyfill.js", "background.js"],
     "persistent": false
   },
   "content_scripts": [
@@ -18,7 +18,7 @@
         "*://www.bigbadtoystore.com/Product*",
         "*://www.bigbadtoystore.com/Search*"
       ],
-      "js": ["crap.js"]
+      "js": ["browser-polyfill.js", "crap.js"]
     }
   ],
   "page_action": {

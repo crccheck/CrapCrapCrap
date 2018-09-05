@@ -1,5 +1,3 @@
-const browser = require('webextension-polyfill')
-
 const DEBUG = process.env.NODE_ENV !== 'production'
 const TRACK_URL = DEBUG ? 'http://localhost:35272/receive/' : 'https://tracker.craptobuy.com/receive/'
 
