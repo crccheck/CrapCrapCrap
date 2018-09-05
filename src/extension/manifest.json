@@ -27,5 +27,10 @@
     "default_title": "CrapCrapCrap",
     "default_popup": "popup/infobox.html",
     "show_matches": "SET IN build_manifest.js"
+  },
+  "icons": {
+    "16": "icons/logo.png",
+    "32": "icons/logo@2x.png",
+    "48": "icons/logo@3x.png"
   }
 }
