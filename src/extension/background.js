@@ -1,3 +1,5 @@
+const browser = require('webextension-polyfill')
+
 const DEBUG = process.env.NODE_ENV !== 'production'
 const TRACK_URL = DEBUG ? 'http://localhost:35272/receive/' : 'https://tracker.craptobuy.com/receive/'
 
@@ -10,7 +12,7 @@ window.state = {
 
 browser.runtime.onMessage.addListener(async (msg) => {
   // FIXME if another tab loads, it will use the current tab
-  const [tab] = await browser.tabs.query({currentWindow: true, active: true})
+  const [tab] = await browser.tabs.query({ currentWindow: true, active: true })
   const { referrer, payload } = msg
   window.state.payload = payload
   const path = payload.length ? 'icons/ccc_loaded.svg' : 'icons/ccc_error.svg'
