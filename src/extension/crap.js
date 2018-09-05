@@ -25,5 +25,6 @@ async function main () {
     payload: data,
     referrer: window.location.href,
   })
+  console.log({response})
 }
 setTimeout(main, 200 + Math.random() * 2000)
