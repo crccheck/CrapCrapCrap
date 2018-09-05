@@ -10,21 +10,11 @@ window.state = {
 
 // TODO Chrome doesn't like the default svg icon and supports show/hide
 
-if (typeof chrome !== 'undefined') {
-  chrome.runtime.onInstalled.addListener(function () {
-    chrome.declarativeContent.onPageChanged.removeRules(undefined, function () {
-      chrome.declarativeContent.onPageChanged.addRules([{
-        conditions: [],
-        // ... show the page action.
-        actions: [new chrome.declarativeContent.ShowPageAction()],
-      }])
-    })
-  })
-}
-
 browser.runtime.onMessage.addListener(async (msg, sender) => {
   // const [tab] = await browser.tabs.query({ currentWindow: true, active: true })
   const { tab } = sender
+  // Chrome doesn't support `show_matches` from the `manifest.json`
+  browser.pageAction.show(tab.id)
   const { referrer, payload } = msg
   window.state.payload = payload
   const path = payload.length ? 'icons/ccc_loaded.svg' : 'icons/ccc_error.svg'
