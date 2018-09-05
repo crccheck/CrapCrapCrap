@@ -21,7 +21,7 @@ async function main () {
       }
       break
   }
-  await browser.runtime.sendMessage({
+  const response = await browser.runtime.sendMessage({ // eslint-disable-line no-unused-vars
     payload: data,
     referrer: window.location.href,
   })
