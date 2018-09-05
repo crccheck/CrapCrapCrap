@@ -7,6 +7,7 @@ module.exports = {
   },
   globals: {
     browser: true,
+    chrome: true,
   },
   rules: {
     // Lets you manipulate lines easier and have cleaner diffs

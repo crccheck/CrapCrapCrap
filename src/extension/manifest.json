@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "description": "Track prices on sites you care about",
   "permissions": [
-    "SET IN build_manifest.js"
+    "https://tracker.craptobuy.com/* SET IN build_manifest.js",
+    "activeTab"
   ],
   "background": {
     "scripts": ["browser-polyfill.js", "background.js"],
