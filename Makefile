@@ -79,6 +79,7 @@ ext/build: ## Build browser extension artifact
 	node_modules/.bin/browserify -t [ envify purge --NODE_ENV production ] src/extension/background.js -o browser_ext/background.js
 	cd browser_ext && web-ext build
 	@echo Submit it at https://addons.mozilla.org/en-US/developers/addons
+	@echo and at https://chrome.google.com/webstore/developer/dashboard
 
 ext/publish: ## Publish browser extension XPI
 	rsync -avz browser_ext/web-ext-artifacts/*.xpi dh:addons.craptobuy.com/downloads

@@ -34,8 +34,9 @@
     "show_matches": "SET IN build_manifest.js"
   },
   "icons": {
-    "16": "icons/logo.png",
-    "32": "icons/logo@2x.png",
-    "48": "icons/logo@3x.png"
+    "16": "icons/ccc_new.png",
+    "32": "icons/ccc_new@2x.png",
+    "48": "icons/ccc_new@3x.png",
+    "64": "icons/ccc_new@4x.png"
   }
 }
