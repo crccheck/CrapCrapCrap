@@ -21,7 +21,7 @@ clean:
 
 lint: ## Run lint check
 	flake8
-	node_modules/.bin/eslint --report-unused-disable-directives src/
+	node_modules/.bin/eslint --report-unused-disable-directives src/ browser_ext/popup
 
 test: ## Run test suite
 	env $$(cat example.env | xargs) python manage.py test --noinput
