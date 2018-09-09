@@ -1,0 +1,45 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+html {
+  color: #333;
+  background-color: white;
+  font-size: 13px;
+  font-family: sans-serif;
+  overflow: hidden;
+}
+ul {
+  margin-bottom: 1.5em;
+  margin-top: 1em;
+  padding: 0;
+}
+li {
+  list-style: none;
+  text-align: center;
+}
+a {
+  color: #4a90e2;
+  text-decoration: none;
+}
+nav {
+  bottom: 0;
+  font-size: 0.8em;
+  position: absolute;
+  width: 100%;
+}
+nav a {
+  background-color: #4a90e2;
+  color: white;
+  display: block;
+  text-align: center;
+  padding: 0.25em;
+  width: 100%;
+}
+.wishlist-btn {
+  display: block;
+  font-size: 0.75em;
+  letter-spacing: 0.6px;
+  padding: 1em 2em;
+  text-transform: uppercase;
+}
