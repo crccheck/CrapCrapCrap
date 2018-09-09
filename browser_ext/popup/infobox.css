@@ -1,13 +1,17 @@
 html, body {
+  background: transparent;
+  box-sizing: border-box;
+  color: #222;
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  font: caption;
   margin: 0;
   padding: 0;
 }
-html {
-  color: #333;
-  background-color: white;
-  font-size: 13px;
-  font-family: sans-serif;
-  overflow: hidden;
+body {
+  /* Chrome requires you to set a width */
+  min-width: 180px;
 }
 ul {
   margin-bottom: 1.5em;
