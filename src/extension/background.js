@@ -8,12 +8,10 @@ window.state = {
   shareUrl: null,
 }
 
-// TODO Chrome doesn't like the default svg icon and supports show/hide
-
 browser.runtime.onMessage.addListener(async (msg, sender) => {
   // const [tab] = await browser.tabs.query({ currentWindow: true, active: true })
   const { tab } = sender
-  // Chrome doesn't support `show_matches` from the `manifest.json`
+  // Chrome ignores `show_matches` in `manifest.json` this enables the popup
   browser.pageAction.show(tab.id)
   const { referrer, payload } = msg
   window.state.payload = payload
