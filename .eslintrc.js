@@ -16,6 +16,6 @@ module.exports = {
     // This is often done in dev, and Uglify will clean it for prod anyways
     'no-unreachable': 'warn',
     // Allow underlines and Flow comment syntax
-    'spaced-comment': ['error', 'always', {exceptions: ['/'], markers: [':', '::']}]
+    'spaced-comment': ['error', 'always', {exceptions: ['/'], markers: [':', '::']}],
   }
 }

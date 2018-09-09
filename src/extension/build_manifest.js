@@ -3,9 +3,9 @@ const manifest = require('./manifest.json')
 
 manifest.version = pkg.version
 if (process.env.NODE_ENV === 'production') {
-  manifest.permissions = ['https://tracker.craptobuy.com/*', 'activeTab']
+  manifest.permissions[0] = 'https://tracker.craptobuy.com/*'
 } else {
-  manifest.permissions = ['http://localhost/*', 'activeTab']
+  manifest.permissions[0] = 'http://localhost/*'
 }
 manifest.page_action.show_matches = manifest.content_scripts[0].matches
 

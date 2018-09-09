@@ -10,7 +10,7 @@ click==6.7                # via pip-tools
 defusedxml==0.5.0         # via python3-openid, social-auth-core
 dj-database-url==0.5.0
 django-cool-pagination==0.3.0
-django-debug-toolbar==1.9.1
+django-debug-toolbar==1.10
 django-extensions==2.1.2
 django==2.1.1
 factory-boy==2.11.1

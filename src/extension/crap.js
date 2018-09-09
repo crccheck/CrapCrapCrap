@@ -13,10 +13,15 @@ async function main () {
       }
       break
     case 'www.bigbadtoystore.com':
-      data = bigbadtoystore()
+      try {
+        data = bigbadtoystore()
+      } catch (err) {
+        console.error(err)
+        data = []
+      }
       break
   }
-  browser.runtime.sendMessage({
+  const response = await browser.runtime.sendMessage({ // eslint-disable-line no-unused-vars
     payload: data,
     referrer: window.location.href,
   })

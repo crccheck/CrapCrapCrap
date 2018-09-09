@@ -28,7 +28,7 @@ exports.bigbadtoystore = function bigbadtoystore () {
       const name = document.querySelector('.product-header h3').textContent.trim()
       const identifier = document.getElementById('ProductVariationId').value
       const url = window.location.href
-      return ([{name, identifier, url, price}])
+      return ([{ name, identifier, url, price }])
     }
   }
 }

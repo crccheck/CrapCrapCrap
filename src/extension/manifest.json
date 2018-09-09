@@ -4,10 +4,12 @@
   "version": "0.0.0",
   "description": "Track prices on sites you care about",
   "permissions": [
-    "SET IN build_manifest.js"
+    "https://tracker.craptobuy.com/* SET IN build_manifest.js",
+    "activeTab"
   ],
   "background": {
-    "scripts": ["background.js"]
+    "scripts": ["browser-polyfill.js", "background.js"],
+    "persistent": false
   },
   "content_scripts": [
     {
@@ -17,14 +19,23 @@
         "*://www.bigbadtoystore.com/Product*",
         "*://www.bigbadtoystore.com/Search*"
       ],
-      "js": ["crap.js"]
+      "js": ["browser-polyfill.js", "crap.js"]
     }
   ],
   "page_action": {
-    "browser_style": true,
-    "default_icon": "icons/ccc_loading.svg",
+    "default_icon": {
+      "16": "icons/ccc_loading.png",
+      "32": "icons/ccc_loading@2x.png",
+      "48": "icons/ccc_loading@3x.png",
+      "64": "icons/ccc_loading@4x.png"
+    },
     "default_title": "CrapCrapCrap",
     "default_popup": "popup/infobox.html",
     "show_matches": "SET IN build_manifest.js"
+  },
+  "icons": {
+    "16": "icons/logo.png",
+    "32": "icons/logo@2x.png",
+    "48": "icons/logo@3x.png"
   }
 }

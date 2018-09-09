@@ -21,7 +21,7 @@ clean:
 
 lint: ## Run lint check
 	flake8
-	node_modules/.bin/eslint --report-unused-disable-directives src/
+	node_modules/.bin/eslint --report-unused-disable-directives src/ browser_ext/popup
 
 test: ## Run test suite
 	env $$(cat example.env | xargs) python manage.py test --noinput
@@ -47,15 +47,19 @@ dev/browser-sync:
 	  --files "apps/tracker/static/*"
 
 build: ## Do a production build of static assets
+build: browser_ext/browser-polyfill.js
 	node_modules/.bin/browserify src/app.js -o apps/tracker/static/app.js
 	node_modules/.bin/sass src/app.scss:apps/tracker/static/app.css --no-source-map
 
 # BROWSER EXTENSION
 
 ext/dev: ## Start dev process for browser extension
-ext/dev: browser_ext/manifest.json
+ext/dev: browser_ext/browser-polyfill.js browser_ext/manifest.json
 	cd browser_ext && web-ext run --url https://www.bigbadtoystore.com/Search?HideSoldOut=true&InventoryStatus=sa%2Ci%2Cp&SortOrder=Bestselling
 	${MAKE} -j ext/dev/browser_ext/background.js ext/dev/browser_ext/crap.js ext/dev/browser_ext/manifest.json
+
+browser_ext/browser-polyfill.js: node_modules/webextension-polyfill/dist/browser-polyfill.min.js
+	cp $< $@
 
 ext/dev/browser_ext/background.js:
 	node_modules/.bin/watchify -t [ envify purge --NODE_ENV development ] src/extension/background.js -o browser_ext/background.js
@@ -74,7 +78,8 @@ ext/build: ## Build browser extension artifact
 	node_modules/.bin/browserify -t [ envify purge --NODE_ENV production ] src/extension/crap.js -o browser_ext/crap.js
 	node_modules/.bin/browserify -t [ envify purge --NODE_ENV production ] src/extension/background.js -o browser_ext/background.js
 	cd browser_ext && web-ext build
-	@echo Submit it at https://addons.mozilla.org/en-US/developers/addon/submit/distribution
+	@echo Submit it at https://addons.mozilla.org/en-US/developers/addons
 
 ext/publish: ## Publish browser extension XPI
 	rsync -avz browser_ext/web-ext-artifacts/*.xpi dh:addons.craptobuy.com/downloads
+	@echo View it at https://addons.craptobuy.com/downloads/

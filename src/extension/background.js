@@ -8,9 +8,11 @@ window.state = {
   shareUrl: null,
 }
 
-browser.runtime.onMessage.addListener(async (msg) => {
-  // FIXME if another tab loads, it will use the current tab
-  const [tab] = await browser.tabs.query({currentWindow: true, active: true})
+browser.runtime.onMessage.addListener(async (msg, sender) => {
+  // const [tab] = await browser.tabs.query({ currentWindow: true, active: true })
+  const { tab } = sender
+  // Chrome ignores `show_matches` in `manifest.json` this enables the popup
+  browser.pageAction.show(tab.id)
   const { referrer, payload } = msg
   window.state.payload = payload
   const path = payload.length ? 'icons/ccc_loaded.svg' : 'icons/ccc_error.svg'
@@ -20,6 +22,7 @@ browser.runtime.onMessage.addListener(async (msg) => {
     data: payload,
     v: 1,
   }
+  const ret = {}
   try {
     const resp = await fetch(TRACK_URL, {
       method: 'POST',
@@ -30,10 +33,11 @@ browser.runtime.onMessage.addListener(async (msg) => {
     })
     const respData = await resp.json()
     window.state.shareUrl = respData.search_url
+    ret.status = 200
   } catch (err) {
     console.error(err)
+    ret.error = err
   }
 
-  // This doesn't work because the popup isn't open yet
-  // browser.extension.getViews({type: 'popup'})
+  return ret
 })
