@@ -11,7 +11,7 @@ WORKDIR /app
 COPY requirements.txt /app/requirements.txt
 RUN pip --disable-pip-version-check install -r requirements.txt
 COPY package.json /app/package.json
-RUN npm install --production
+RUN npm install
 COPY . /app
 RUN make build
 RUN env $(cat example.env | xargs) ./manage.py collectstatic --noinput
