@@ -23,6 +23,7 @@ mccabe==0.6.1             # via flake8
 oauthlib==3.1.0           # via requests-oauthlib, social-auth-core
 pip-tools==4.3.0
 project-runpy==1.0.1
+psycopg2-binary==2.8.4
 pycodestyle==2.5.0        # via flake8
 pyflakes==2.1.1           # via flake8
 pyjwt==1.7.1              # via social-auth-core

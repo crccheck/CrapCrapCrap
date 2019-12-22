@@ -3,8 +3,7 @@ Django
 django-cool-pagination
 django-extensions
 project_runpy
-# https://github.com/psycopg/psycopg2/issues/807
-# psycopg2-binary
+psycopg2-binary
 social-auth-app-django
 waitress
 whitenoise
