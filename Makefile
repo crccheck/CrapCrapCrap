@@ -5,8 +5,6 @@ install: ## Install requirements
 install:
 	@[ -n "${VIRTUAL_ENV}" ] || (echo "ERROR: This should be run from a virtualenv" && exit 1)
 	pip install -r requirements.txt
-	# https://github.com/psycopg/psycopg2/issues/807
-	pip install --no-binary :all: "psycopg2==2.7.6"
 
 .PHONY: requirements.txt
 requirements.txt: ## Regenerate requirements.txt
