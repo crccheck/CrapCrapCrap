@@ -6,6 +6,17 @@ CrapCrapCrap
 Run your own price tracker, similar to CamelCamelCamel.
 
 
+Getting started
+---------------
+
+### Web Extension
+
+The `web-ext` package: https://github.com/mozilla/web-ext
+
+```
+npm i -g web-ext
+```
+
 Release process
 ---------------
 
