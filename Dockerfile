@@ -1,11 +1,13 @@
-FROM python:3.7-alpine
+FROM python:3.8-alpine
 LABEL maintainer="c@crccheck.com"
 
 RUN apk add --no-cache \
   # psycopg2
   postgresql-dev gcc musl-dev \
   # staticfiles build
-  nodejs nodejs-npm make
+  nodejs nodejs-npm make \
+  # Python dep: cryptography
+  libffi-dev
 
 WORKDIR /app
 COPY requirements.txt /app/requirements.txt
@@ -18,4 +20,4 @@ RUN env $(cat example.env | xargs) ./manage.py collectstatic --noinput
 
 EXPOSE 8000
 HEALTHCHECK CMD nc -z localhost 8000
-CMD waitress-serve --port=8000 crap.wsgi:application
+CMD daphne --port=8000 crap.asgi:application

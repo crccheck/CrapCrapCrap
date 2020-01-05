@@ -1,3 +1,6 @@
+IMPORTANT: This is the source template for the web extension.
+
+
 Firefox/Chrome cross-compatibility weirdness
 ============================================
 
