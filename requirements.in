@@ -6,7 +6,6 @@ django-extensions
 project_runpy
 psycopg2-binary
 social-auth-app-django
-waitress
 whitenoise
 
 # Dev
