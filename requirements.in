@@ -1,3 +1,4 @@
+daphne
 dj-database-url
 Django
 django-cool-pagination
