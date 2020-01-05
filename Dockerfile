@@ -1,11 +1,13 @@
-FROM python:3.7-alpine
+FROM python:3.8-alpine
 LABEL maintainer="c@crccheck.com"
 
 RUN apk add --no-cache \
   # psycopg2
   postgresql-dev gcc musl-dev \
   # staticfiles build
-  nodejs nodejs-npm make
+  nodejs nodejs-npm make \
+  # Python dep: cryptography
+  libffi-dev
 
 WORKDIR /app
 COPY requirements.txt /app/requirements.txt
