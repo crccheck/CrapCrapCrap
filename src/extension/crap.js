@@ -1,5 +1,6 @@
 const { amazon } = require('./amazon')
 const { bigbadtoystore } = require('./bbts')
+const { debug } = require('./utils')
 
 async function main () {
   let data
@@ -20,6 +21,8 @@ async function main () {
         data = []
       }
       break
+    default:
+      debug('unknown host: %s', window.location.host)
   }
   const response = await browser.runtime.sendMessage({ // eslint-disable-line no-unused-vars
     payload: data,
