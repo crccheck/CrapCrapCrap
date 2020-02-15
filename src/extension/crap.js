@@ -1,5 +1,5 @@
-const { amazon } = require('./amazon')
-const { bigbadtoystore } = require('./bbts')
+const { amazon } = require('./stores/amazon')
+const { bigbadtoystore } = require('./stores/bbts')
 const { debug } = require('./utils')
 
 async function main () {
