@@ -7,6 +7,10 @@ Usage
 
 ### Firefox
 
+From the project root, run the watcher:
+
+    make ext/dev
+
 
 Firefox/Chrome cross-compatibility weirdness
 ============================================
