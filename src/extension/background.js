@@ -11,12 +11,14 @@ window.state = {
 browser.runtime.onMessage.addListener(async (msg, sender) => {
   // const [tab] = await browser.tabs.query({ currentWindow: true, active: true })
   const { tab } = sender
-  // Chrome ignores `show_matches` in `manifest.json` this enables the popup
+  // Chrome ignores `show_matches` in `manifest.json`, so this enables the popup instead
   browser.pageAction.show(tab.id)
   const { referrer, payload } = msg
   window.state.payload = payload
-  const path = payload.length ? 'icons/ccc_loaded.svg' : 'icons/ccc_error.svg'
+  // FIXME Chrome can't load svg
+  const path = payload.length ? 'icons/ccc_loaded.png' : 'icons/ccc_error.png'
   browser.pageAction.setIcon({ tabId: tab.id, path })
+
   const body = {
     referrer,
     data: payload,

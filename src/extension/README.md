@@ -41,8 +41,7 @@ The easiest thing to do is stick with `browser` and use the
 Chrome doesn't support svg
 --------------------------
 
-Any icons listed in [`manifest.json`] have to be PNG. Any icons
-programmatically set (e.g. `browser.pageAction.setIcon`) will take SVG fine.
+All icons have to be PNG.
 
 
 Displaying popups
