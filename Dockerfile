@@ -20,4 +20,4 @@ RUN env $(cat example.env | xargs) ./manage.py collectstatic --noinput
 
 EXPOSE 8000
 HEALTHCHECK CMD nc -z localhost 8000
-CMD daphne --port=8000 crap.asgi:application
+CMD daphne --bind=0.0.0.0 --port=8000 crap.asgi:application
