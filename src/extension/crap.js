@@ -2,8 +2,12 @@ const { amazon } = require('./stores/amazon')
 const { bigbadtoystore } = require('./stores/bbts')
 const { debug } = require('./utils')
 
+/*::
+PriceData: { name: string, identifier: string, url: string, price: string }
+*/
+
 async function main () {
-  let data
+  let data/*: PriceData[] */ = []
   switch (window.location.host) {
     case 'www.amazon.com':
       try {
