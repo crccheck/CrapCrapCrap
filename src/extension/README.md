@@ -1,4 +1,11 @@
-IMPORTANT: This is the source template for the web extension.
+IMPORTANT: This directory is the source template for the web extension.
+[`manifest.json`] won't be valid in this directory.
+
+
+Usage
+=====
+
+### Firefox
 
 
 Firefox/Chrome cross-compatibility weirdness
