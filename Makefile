@@ -55,11 +55,14 @@ build: browser_ext/browser-polyfill.js
 
 # BROWSER EXTENSION
 
-ext/dev: ## Start dev process for browser extension
+web-ext: ## Terminal 1: Start web-ext for browser extension
+web-ext: browser_ext/browser-polyfill.js browser_ext/manifest.json
+	cd browser_ext && web-ext run --url $(TARGET_URL)
+
+ext/dev: ## Terminal 2: Start dev watcher for browser extension
 ext/dev: browser_ext/browser-polyfill.js browser_ext/manifest.json
 	node_modules/.bin/concurrently \
-	  --names "web-ext,background,crap,manifest" \
-	  "cd browser_ext && web-ext run --url $(TARGET_URL)" \
+	  --names "background,crap,manifest" \
 	  "${MAKE} ext/dev/browser_ext/background.js" \
 	  "${MAKE} ext/dev/browser_ext/crap.js" \
 	  "${MAKE} ext/dev/browser_ext/manifest.json"

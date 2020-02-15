@@ -11,6 +11,12 @@ From the project root, run the watcher:
 
     make ext/dev
 
+And in another terminal, run "web-ext":
+
+    make web-ext
+
+"web-ext" needs to be separate so you can control reloads.
+
 
 Firefox/Chrome cross-compatibility weirdness
 ============================================
