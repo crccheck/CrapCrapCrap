@@ -1,5 +1,5 @@
 """
-ASGI config for deleteme project.
+ASGI config for crap project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 

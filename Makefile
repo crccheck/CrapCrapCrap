@@ -3,7 +3,7 @@ help: ## Shows this help
 
 install: ## Install requirements
 install:
-	@[ -n "${VIRTUAL_ENV}" ] || (echo "ERROR: This should be run from a virtualenv" && exit 1)
+	@[ -n "${VIRTUAL_ENV}" ] || [ -f ".python-version" ] || (echo "ERROR: This should be run from a virtualenv" && exit 1)
 	pip install -r requirements.txt
 
 .PHONY: requirements.txt
