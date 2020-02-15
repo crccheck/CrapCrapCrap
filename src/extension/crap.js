@@ -14,7 +14,6 @@ async function main () {
         data = amazon()
       } catch (err) {
         console.error(err)
-        data = []
       }
       break
     case 'www.bigbadtoystore.com':
@@ -22,7 +21,13 @@ async function main () {
         data = bigbadtoystore()
       } catch (err) {
         console.error(err)
-        data = []
+      }
+      break
+    case 'www.wayfair.com':
+      try {
+        data = require('./stores/wayfair')()
+      } catch (err) {
+        console.error(err)
       }
       break
     default:
