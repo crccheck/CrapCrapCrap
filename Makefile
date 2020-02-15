@@ -1,3 +1,5 @@
+TARGET_URL ?= https://www.amazon.com/dp/B07LDNGG6J
+
 help: ## Shows this help
 	@echo "$$(grep -h '#\{2\}' $(MAKEFILE_LIST) | sed 's/: #\{2\} /	/' | column -t -s '	')"
 
@@ -55,7 +57,7 @@ build: browser_ext/browser-polyfill.js
 
 ext/dev: ## Start dev process for browser extension
 ext/dev: browser_ext/browser-polyfill.js browser_ext/manifest.json
-	cd browser_ext && web-ext run --url https://www.bigbadtoystore.com/Search?HideSoldOut=true&InventoryStatus=sa%2Ci%2Cp&SortOrder=Bestselling
+	cd browser_ext && web-ext run --url $(TARGET_URL)
 	${MAKE} -j ext/dev/browser_ext/background.js ext/dev/browser_ext/crap.js ext/dev/browser_ext/manifest.json
 
 browser_ext/browser-polyfill.js: node_modules/webextension-polyfill/dist/browser-polyfill.min.js
