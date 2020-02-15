@@ -17,6 +17,16 @@ And in another terminal, run "web-ext":
 
 "web-ext" needs to be separate so you can control reloads.
 
+### Chrome
+
+https://developer.chrome.com/extensions/getstarted
+
+1. Enable "Developer mode"
+2. Install Extensions Reloader
+   https://chrome.google.com/webstore/detail/extensions-reloader/fimgfedafeadlieiabdeeaodndnlbhid
+3. Run `make ext/dev` to make sure `browser_ext` is built
+4. "Load unpacked" the [`browser_ext`] directory
+
 
 Firefox/Chrome cross-compatibility weirdness
 ============================================
@@ -43,4 +53,5 @@ programmatically.
 
 
   [webextension-polyfill]: https://github.com/mozilla/webextension-polyfill
+  [`browser_ext`]: ../browser_ext
   [`manifest.json`]: ./manifest.json
