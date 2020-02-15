@@ -57,8 +57,12 @@ build: browser_ext/browser-polyfill.js
 
 ext/dev: ## Start dev process for browser extension
 ext/dev: browser_ext/browser-polyfill.js browser_ext/manifest.json
-	cd browser_ext && web-ext run --url $(TARGET_URL)
-	${MAKE} -j ext/dev/browser_ext/background.js ext/dev/browser_ext/crap.js ext/dev/browser_ext/manifest.json
+	node_modules/.bin/concurrently \
+	  --names "web-ext,background,crap,manifest" \
+	  "cd browser_ext && web-ext run --url $(TARGET_URL)" \
+	  "${MAKE} ext/dev/browser_ext/background.js" \
+	  "${MAKE} ext/dev/browser_ext/crap.js" \
+	  "${MAKE} ext/dev/browser_ext/manifest.json"
 
 browser_ext/browser-polyfill.js: node_modules/webextension-polyfill/dist/browser-polyfill.min.js
 	cp $< $@
