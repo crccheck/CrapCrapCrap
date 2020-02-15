@@ -20,7 +20,7 @@ class Property(models.Model):
 class Product(models.Model):
     key = models.CharField(max_length=9, unique=True, default=pkgen)
     property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name='products')
-    identifier = models.CharField(max_length=200)
+    identifier = models.CharField(max_length=200, help_text='Some unique identifier for the product on the site (e.g. a SKU, product id, or URL)')
     name = models.CharField(max_length=255, null=True, blank=True)
     url = models.URLField(blank=True, null=True)
     last_price = models.DecimalField(max_digits=8, decimal_places=2, null=True)
