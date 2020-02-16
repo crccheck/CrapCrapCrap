@@ -82,6 +82,9 @@ ext/dev/browser_ext/manifest.json:
 browser_ext/manifest.json: src/extension/manifest.json package.json
 	node src/extension/build_manifest.js > browser_ext/manifest.json
 
+ext/tdd:
+	node_modules/.bin/mocha src/**/*.spec.js --watch
+
 ext/build: ## Build browser extension artifact
 	NODE_ENV=production ${MAKE} -s browser_ext/manifest.json
 	node_modules/.bin/browserify -t [ envify purge --NODE_ENV production ] src/extension/crap.js -o browser_ext/crap.js
