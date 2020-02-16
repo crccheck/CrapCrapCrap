@@ -15,18 +15,24 @@ browser.runtime.onMessage.addListener(async (msg, sender) => {
   browser.pageAction.show(tab.id)
   const { referrer, payload } = msg
   window.state.payload = payload
-  // FIXME Chrome can't load svg
-  const path = payload.length ? 'icons/ccc_loaded.png' : 'icons/ccc_error.png'
-  browser.pageAction.setIcon({ tabId: tab.id, path })
+  if (!payload.length) {
+    browser.pageAction.setIcon({ tabId: tab.id, path: 'icons/ccc_error.png' })
+    return
+  }
 
+  browser.pageAction.setIcon({ tabId: tab.id, path: 'icons/ccc_loaded.png' })
   const body = {
     referrer,
     data: payload,
     v: 1,
   }
   const ret = {}
+  const url = new URL(TRACK_URL)
+  // Add referrer so access logs make more sense
+  url.searchParams.append('referrer', referrer)
+
   try {
-    const resp = await fetch(TRACK_URL, {
+    const resp = await fetch(url.toString(), {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
