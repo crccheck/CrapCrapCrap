@@ -16,6 +16,7 @@
       "matches": [
         "https://www.amazon.com/dp/*",
         "https://www.amazon.com/*/dp/*",
+        "https://www.wayfair.com/*",
         "*://www.bigbadtoystore.com/Product*",
         "*://www.bigbadtoystore.com/Search*"
       ],

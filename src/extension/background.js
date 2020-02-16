@@ -11,20 +11,28 @@ window.state = {
 browser.runtime.onMessage.addListener(async (msg, sender) => {
   // const [tab] = await browser.tabs.query({ currentWindow: true, active: true })
   const { tab } = sender
-  // Chrome ignores `show_matches` in `manifest.json` this enables the popup
+  // Chrome ignores `show_matches` in `manifest.json`, so this enables the popup instead
   browser.pageAction.show(tab.id)
   const { referrer, payload } = msg
   window.state.payload = payload
-  const path = payload.length ? 'icons/ccc_loaded.svg' : 'icons/ccc_error.svg'
-  browser.pageAction.setIcon({ tabId: tab.id, path })
+  if (!payload.length) {
+    browser.pageAction.setIcon({ tabId: tab.id, path: 'icons/ccc_error.png' })
+    return
+  }
+
+  browser.pageAction.setIcon({ tabId: tab.id, path: 'icons/ccc_loaded.png' })
   const body = {
     referrer,
     data: payload,
     v: 1,
   }
   const ret = {}
+  const url = new URL(TRACK_URL)
+  // Add referrer so access logs make more sense
+  url.searchParams.append('referrer', referrer)
+
   try {
-    const resp = await fetch(TRACK_URL, {
+    const resp = await fetch(url.toString(), {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=utf-8',

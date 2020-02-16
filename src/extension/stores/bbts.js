@@ -1,4 +1,4 @@
-const { debug } = require('./utils')
+const { debug } = require('../utils')
 
 exports.bigbadtoystore = function bigbadtoystore () {
   const [, pageType] = window.location.pathname.split('/')

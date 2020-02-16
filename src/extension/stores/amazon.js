@@ -1,4 +1,4 @@
-const { debug } = require('./utils')
+const { debug } = require('../utils')
 
 exports.amazon = function amazon () {
   const url = document.querySelector('link[rel=canonical]').href

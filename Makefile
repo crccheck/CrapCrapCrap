@@ -1,3 +1,5 @@
+TARGET_URL ?= https://www.amazon.com/dp/B07LDNGG6J
+
 help: ## Shows this help
 	@echo "$$(grep -h '#\{2\}' $(MAKEFILE_LIST) | sed 's/: #\{2\} /	/' | column -t -s '	')"
 
@@ -53,10 +55,17 @@ build: browser_ext/browser-polyfill.js
 
 # BROWSER EXTENSION
 
-ext/dev: ## Start dev process for browser extension
+web-ext: ## Terminal 1: Start web-ext for browser extension
+web-ext: browser_ext/browser-polyfill.js browser_ext/manifest.json
+	cd browser_ext && web-ext run --url $(TARGET_URL)
+
+ext/dev: ## Terminal 2: Start dev watcher for browser extension
 ext/dev: browser_ext/browser-polyfill.js browser_ext/manifest.json
-	cd browser_ext && web-ext run --url https://www.bigbadtoystore.com/Search?HideSoldOut=true&InventoryStatus=sa%2Ci%2Cp&SortOrder=Bestselling
-	${MAKE} -j ext/dev/browser_ext/background.js ext/dev/browser_ext/crap.js ext/dev/browser_ext/manifest.json
+	node_modules/.bin/concurrently \
+	  --names "background,crap,manifest" \
+	  "${MAKE} ext/dev/browser_ext/background.js" \
+	  "${MAKE} ext/dev/browser_ext/crap.js" \
+	  "${MAKE} ext/dev/browser_ext/manifest.json"
 
 browser_ext/browser-polyfill.js: node_modules/webextension-polyfill/dist/browser-polyfill.min.js
 	cp $< $@
