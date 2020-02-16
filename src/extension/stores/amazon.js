@@ -1,6 +1,8 @@
 const { debug } = require('../utils')
 
-exports.amazon = function amazon () {
+exports.hosts = ['www.amazon.com']
+
+exports.scrape = function () {
   const url = document.querySelector('link[rel=canonical]').href
   const identifier = url.match(/\/dp\/(\w+)/)[1]
   debug('identifier', identifier)

@@ -1,6 +1,8 @@
 const { debug } = require('../utils')
 
-module.exports = function () {
+exports.hosts = ['www.wayfair.com']
+
+exports.scrape = function () {
   debug('Analyzing Wayfair page...')
   const product = [...document.querySelectorAll('script[type="application/ld+json"]')]
     .map((x) => JSON.parse(x.innerHTML))

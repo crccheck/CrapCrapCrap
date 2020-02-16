@@ -1,6 +1,8 @@
 const { debug } = require('../utils')
 
-exports.bigbadtoystore = function bigbadtoystore () {
+exports.hosts = ['www.bigbadtoystore.com']
+
+exports.scrape = function () {
   const [, pageType] = window.location.pathname.split('/')
   switch (pageType) {
     case 'Search': {
