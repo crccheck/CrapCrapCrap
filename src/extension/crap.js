@@ -4,21 +4,22 @@ const { debug } = require('./utils')
 PriceData: { name: string, identifier: string, url: string, price: string }
 */
 
-const scrapers = new Map([
-  ['www.amazon.com', require('./stores/amazon').scrape],
-  ['www.bigbadtoystore.com', require('./stores/bbts').scrape],
-  ['www.wayfair.com', require('./stores/wayfair').scrape],
-])
+const allScrapers = [
+  require('./stores/amazon'),
+  require('./stores/bbts'),
+  require('./stores/wayfair'),
+]
+
 async function main () {
-  if (!scrapers.has(window.location.host)) {
+  const scraper = allScrapers.find((x) => x.hosts.includes(window.location.host))
+  if (!scraper) {
     debug('unknown host: %s', window.location.host)
     return
   }
 
-  const scraper = scrapers.get(window.location.host)
   let data/*: PriceData[] */ = []
   try {
-    data = scraper()
+    data = scraper.scrape()
   } catch (err) {
     debug(err)
   }

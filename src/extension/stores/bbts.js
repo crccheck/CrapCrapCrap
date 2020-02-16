@@ -1,5 +1,7 @@
 const { debug } = require('../utils')
 
+exports.hosts = ['www.bigbadtoystore.com']
+
 exports.scrape = function () {
   const [, pageType] = window.location.pathname.split('/')
   switch (pageType) {
