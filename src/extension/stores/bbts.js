@@ -1,6 +1,6 @@
 const { debug } = require('../utils')
 
-exports.bigbadtoystore = function bigbadtoystore () {
+exports.scrape = function () {
   const [, pageType] = window.location.pathname.split('/')
   switch (pageType) {
     case 'Search': {

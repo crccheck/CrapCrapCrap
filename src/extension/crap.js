@@ -1,5 +1,3 @@
-const { amazon } = require('./stores/amazon')
-const { bigbadtoystore } = require('./stores/bbts')
 const { debug } = require('./utils')
 
 /*::
@@ -11,21 +9,21 @@ async function main () {
   switch (window.location.host) {
     case 'www.amazon.com':
       try {
-        data = amazon()
+        data = require('./stores/amazon').scrape()
       } catch (err) {
         debug(err)
       }
       break
     case 'www.bigbadtoystore.com':
       try {
-        data = bigbadtoystore()
+        data = require('./stores/bbts').scrape()
       } catch (err) {
         debug(err)
       }
       break
     case 'www.wayfair.com':
       try {
-        data = require('./stores/wayfair')()
+        data = require('./stores/wayfair').scrape()
       } catch (err) {
         debug(err)
       }
