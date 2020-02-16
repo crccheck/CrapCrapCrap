@@ -62,10 +62,11 @@ web-ext: browser_ext/browser-polyfill.js browser_ext/manifest.json
 ext/dev: ## Terminal 2: Start dev watcher for browser extension
 ext/dev: browser_ext/browser-polyfill.js browser_ext/manifest.json
 	node_modules/.bin/concurrently \
-	  --names "background,crap,manifest" \
+	  --names "background,crap,manifest,test" \
 	  "${MAKE} ext/dev/browser_ext/background.js" \
 	  "${MAKE} ext/dev/browser_ext/crap.js" \
-	  "${MAKE} ext/dev/browser_ext/manifest.json"
+	  "${MAKE} ext/dev/browser_ext/manifest.json" \
+	  "${MAKE} ext/tdd"
 
 browser_ext/browser-polyfill.js: node_modules/webextension-polyfill/dist/browser-polyfill.min.js
 	cp $< $@
