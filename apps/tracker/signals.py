@@ -9,7 +9,7 @@ from apps.tracker.models import TrackPoint
 
 # WISHLIST make this async so it doesn't block views.ReceiverView
 # or make it a feature and use the it in the response as user feedback
-def update_product_pricing(sender, point: TrackPoint, **kwargs):
+def update_product_pricing(sender, point: TrackPoint, **kwargs) -> None:
     """
     Denormalize `Product` pricing when a new `TrackPoint` is added
     """
