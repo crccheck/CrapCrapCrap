@@ -29,4 +29,8 @@ async function main () {
   })
 }
 
-setTimeout(main, 200 + Math.random() * 2000)
+if (typeof process === 'object') {
+  exports.main = main
+} else {
+  setTimeout(main, 200 + Math.random() * 2000)
+}
