@@ -34,8 +34,8 @@ class TrackPointTests(TestCase):
         self.assertEqual(product.price_base, 1060)
         self.assertEqual(product.min_price, 1000)
         self.assertEqual(product.last_price, point.price)
-        self.assertEqual(product.price_drop_short, max(0, prices[-2] - prices[-1]))
-        self.assertEqual(product.price_drop_long, max(0, 1060 - prices[-1]))
+        self.assertEqual(product.price_drop_long, 1060 - point.price)
+        self.assertEqual(product.price_drop_short, 1060 - point.price)
 
     def test_base_price_is_higest_seen_price(self):
         product = ProductFactory()
