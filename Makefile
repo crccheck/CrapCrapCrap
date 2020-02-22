@@ -84,7 +84,7 @@ browser_ext/manifest.json: src/extension/manifest.json package.json
 	node src/extension/build_manifest.js > browser_ext/manifest.json
 
 ext/tdd:
-	node_modules/.bin/mocha src/**/*.spec.js --watch
+	node_modules/.bin/mocha src/**/*.spec.js --watch --watch-files=src
 
 ext/build: ## Build browser extension artifact
 	NODE_ENV=production ${MAKE} -s browser_ext/manifest.json
