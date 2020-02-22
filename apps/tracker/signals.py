@@ -27,10 +27,6 @@ def update_product_pricing(sender, point: TrackPoint, **kwargs) -> None:
         if x.timestamp > one_day_ago:
             day_prices.append(x.price)
 
-    min_prices = [product.min_price] + week_prices
-    min_prices = [x for x in min_prices if x]
-    product.min_price = min(min_prices)
-
     product.last_price = point.price
     product.last_price_check = point.timestamp
 
@@ -47,8 +43,8 @@ def update_product_pricing(sender, point: TrackPoint, **kwargs) -> None:
         max_ever=max_ever,
         min_ever=min_ever,
     )
-    print(all_price_info)
     product.price_base = all_price_info["max_ever"]
+    product.min_price = all_price_info["min_ever"]
 
     product.save()
 
