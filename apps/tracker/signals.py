@@ -34,7 +34,6 @@ def update_product_pricing(sender, point: TrackPoint, **kwargs) -> None:
         product.price_drop_short = max(day_prices) - point.price
     else:
         product.price_drop_short = 0
-    product.price_drop_long = max(week_prices) - point.price
 
     max_ever = Max('price')
     min_ever = Min('price')
@@ -45,6 +44,7 @@ def update_product_pricing(sender, point: TrackPoint, **kwargs) -> None:
     )
     product.price_base = all_price_info["max_ever"]
     product.min_price = all_price_info["min_ever"]
+    product.price_drop_long = product.price_base - point.price
 
     product.save()
 
