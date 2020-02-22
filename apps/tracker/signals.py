@@ -37,7 +37,6 @@ def update_product_pricing(sender, point: TrackPoint, **kwargs) -> None:
     )
     product.price_drop_short = week_price_info["max_week"] - point.price
 
-
     product.save()
 
 

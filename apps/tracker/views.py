@@ -21,7 +21,7 @@ class ReceiverView(View):
         logger.debug(request.body)
         try:
             data = json.loads(request.body)
-        except ValueError as e:
+        except ValueError:
             return HttpResponse(status=400)
 
         hostname = urlparse(data['referrer']).hostname
