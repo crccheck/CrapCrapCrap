@@ -1,7 +1,7 @@
 import datetime as dt
 
 from django.utils.timezone import now
-from django.db.models import Count, Max, Q  # noqa F401
+from django.db.models import Count, Max, Min, Q  # noqa F401
 from django.dispatch import Signal
 
 from apps.tracker.models import TrackPoint
@@ -26,15 +26,7 @@ def update_product_pricing(sender, point: TrackPoint, **kwargs) -> None:
         week_prices.append(x.price)
         if x.timestamp > one_day_ago:
             day_prices.append(x.price)
-    # TODO do this in the database instead of Python
-    # max_week = Max('price', filter=Q(timestamp__gte=now() - dt.timedelta(days=70, minutes=1)))
-    # max_day = Max('price', filter=Q(timestamp__gte=now() - dt.timedelta(days=2, minutes=1)))
-    # out = product.prices.aggregate(
-    #     count=Count('id'),
-    #     max_week=max_week,
-    #     week_diff=max_week - point.price,
-    #     day_diff=max_day - point.price,
-    # )
+
     min_prices = [product.min_price] + week_prices
     min_prices = [x for x in min_prices if x]
     product.min_price = min(min_prices)
@@ -48,9 +40,15 @@ def update_product_pricing(sender, point: TrackPoint, **kwargs) -> None:
         product.price_drop_short = 0
     product.price_drop_long = max(week_prices) - point.price
 
-    price_bases = [product.last_price] + week_prices
-    price_bases = [x for x in price_bases if x]
-    product.price_base = max(price_bases)
+    max_ever = Max('price')
+    min_ever = Min('price')
+    all_price_info = product.prices.aggregate(
+        count=Count('id'),
+        max_ever=max_ever,
+        min_ever=min_ever,
+    )
+    print(all_price_info)
+    product.price_base = all_price_info["max_ever"]
 
     product.save()
 
