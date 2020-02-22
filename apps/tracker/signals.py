@@ -49,5 +49,5 @@ def update_product_pricing(sender, point: TrackPoint, **kwargs) -> None:
     product.save()
 
 
-track_point_added = Signal(providing_args=['product'])
+track_point_added = Signal(providing_args=['point'])
 track_point_added.connect(update_product_pricing)
