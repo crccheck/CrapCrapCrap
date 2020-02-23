@@ -86,6 +86,16 @@ browser_ext/manifest.json: src/extension/manifest.json package.json
 ext/tdd:
 	node_modules/.bin/mocha src/**/*.spec.js --watch --watch-files=src
 
+# Pick a new version and set it in package.json
+# git checkout master
+# git pull
+# Update CHANGELOG
+# git commit $(jq -r .version package.json)
+# make ext/build # this takes 2.5 minutes
+# ammend HEAD if necessary
+# TODO: do releases with a pull request
+# git tag v$(jq -r .version package.json)
+# git push --follow-tagss
 ext/build: ## Build browser extension artifact
 	NODE_ENV=production ${MAKE} -s browser_ext/manifest.json
 	node_modules/.bin/browserify -t [ envify purge --NODE_ENV production ] src/extension/crap.js -o browser_ext/crap.js
