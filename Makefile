@@ -90,7 +90,7 @@ ext/build: ## Build browser extension artifact
 	NODE_ENV=production ${MAKE} -s browser_ext/manifest.json
 	node_modules/.bin/browserify -t [ envify purge --NODE_ENV production ] src/extension/crap.js -o browser_ext/crap.js
 	node_modules/.bin/browserify -t [ envify purge --NODE_ENV production ] src/extension/background.js -o browser_ext/background.js
-	cd browser_ext && web-ext build
+	cd browser_ext && web-ext build && web-ext sign --api-key=${AMO_JWT_ISSUER} --api-secret=${AMO_JWT_SECRET} --channel=unlisted
 	@echo Submit it at https://addons.mozilla.org/en-US/developers/addons
 	@echo and at https://chrome.google.com/webstore/developer/dashboard
 
