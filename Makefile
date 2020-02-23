@@ -81,7 +81,7 @@ ext/dev/browser_ext/manifest.json:
 	nodemon -w "src/extension/manifest.json" -x "make browser_ext/manifest.json"
 
 browser_ext/manifest.json: src/extension/manifest.json package.json
-	node src/extension/build_manifest.js > browser_ext/manifest.json
+	node src/extension/manifest_build.js > browser_ext/manifest.json
 
 ext/tdd:
 	node_modules/.bin/mocha src/**/*.spec.js --watch --watch-files=src
