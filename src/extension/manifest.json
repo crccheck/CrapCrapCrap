@@ -2,7 +2,8 @@
   "manifest_version": 2,
   "name": "CrapCrapCrap",
   "version": "0.0.0",
-  "description": "Track prices on sites you care about",
+  "description": "Work in progress extension to track prices on a few sites: Amazon, BBTS, Wayfair",
+  "author": "Chris Chang",
   "permissions": [
     "https://tracker.craptobuy.com/* SET IN build_manifest.js",
     "activeTab"
