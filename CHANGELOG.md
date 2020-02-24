@@ -1,3 +1,11 @@
+## [0.6.2](https://github.com/crccheck/CrapCrapCrap/compare/v0.6.1...v0.6.2) (2020-02-24)
+
+
+### Bug Fixes
+
+* **ext:** Fix extension not loading ([#48](https://github.com/crccheck/CrapCrapCrap/issues/48)) ([fa9a603](https://github.com/crccheck/CrapCrapCrap/commit/fa9a603))
+
+
 ## [0.6.1](https://github.com/crccheck/CrapCrapCrap/compare/v0.6.0...v0.6.1) (2020-02-23)
 
 

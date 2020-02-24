@@ -92,10 +92,11 @@ ext/test:
 # Pick a new version and set it in package.json
 # git checkout master
 # git pull
+# update package.json with the next version
 # Update CHANGELOG
-# git commit $(jq -r .version package.json)
-# make ext/build # this takes 2.5 minutes
-# ammend HEAD if necessary
+# git commit -am $(jq -r .version package.json)
+# make ext/build # this takes 1 to 2.5 minutes
+# amend HEAD if necessary
 # TODO: do releases with a pull request
 # git tag v$(jq -r .version package.json)
 # git push --follow-tags
