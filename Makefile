@@ -86,6 +86,9 @@ browser_ext/manifest.json: src/extension/manifest.json package.json
 ext/tdd:
 	node_modules/.bin/mocha src/**/*.spec.js --watch --watch-files=src
 
+ext/test:
+	node_modules/.bin/mocha src/**/*.spec.js
+
 # Pick a new version and set it in package.json
 # git checkout master
 # git pull
