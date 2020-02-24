@@ -6,9 +6,8 @@ services: postgresql
 addons:
   postgresql: "9.6"
 install: pip install -r requirements.txt
-script:
-  - make test
-  - make ext/test
+# TODO run JS tests too
+script: make test
 
 branches:
   only:
