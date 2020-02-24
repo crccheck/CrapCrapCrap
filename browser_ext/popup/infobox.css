@@ -48,3 +48,6 @@ nav a {
   padding: 1em 2em;
   text-transform: uppercase;
 }
+.hide {
+  visibility: hidden;
+}
