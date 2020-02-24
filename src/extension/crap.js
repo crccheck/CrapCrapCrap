@@ -29,7 +29,7 @@ async function main () {
   })
 }
 
-if (typeof process === 'object') {
+if (typeof process === 'object' && !process.browser) {
   exports.main = main
 } else {
   setTimeout(main, 200 + Math.random() * 2000)
