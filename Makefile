@@ -95,7 +95,7 @@ ext/tdd:
 # ammend HEAD if necessary
 # TODO: do releases with a pull request
 # git tag v$(jq -r .version package.json)
-# git push --follow-tagss
+# git push --follow-tags
 ext/build: ## Build browser extension artifact
 	NODE_ENV=production ${MAKE} -s browser_ext/manifest.json
 	node_modules/.bin/browserify -t [ envify purge --NODE_ENV production ] src/extension/crap.js -o browser_ext/crap.js
