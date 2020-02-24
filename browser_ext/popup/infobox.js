@@ -16,6 +16,7 @@ browser.runtime.getBackgroundPage().then((bgWindow) => {
   $productCount.textContent = `${state.payload.length} product${plural} found!`
 
   if (state.shareUrl) {
+    $wish.parentElement.classList.remove('hide')
     $wish.href = state.shareUrl
   }
 })
